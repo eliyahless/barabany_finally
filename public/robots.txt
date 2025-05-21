@@ -1,0 +1,30 @@
+# Robots.txt для Не Школы Барабанов
+User-agent: *
+Allow: /
+
+# Запрещаем индексацию служебных страниц
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /login/
+Disallow: /signup/
+Disallow: /reset-password/
+Disallow: /verify-email/
+
+# Запрещаем индексацию файлов определенных типов
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*.md$
+Disallow: /*.env$
+Disallow: /*.config$
+
+# Разрешаем индексацию sitemap
+Allow: /sitemap.xml
+
+# Указываем расположение sitemap
+Sitemap: https://neshkola.ru/sitemap.xml
+
+# Указываем расположение host
+Host: https://neshkola.ru
