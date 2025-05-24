@@ -8,7 +8,10 @@ export async function sendTelegramNotification(message: string): Promise<boolean
     const botToken = process.env.TELEGRAM_BOT_TOKEN
     const chatId = process.env.TELEGRAM_CHAT_ID
 
+    console.log("[TELEGRAM] Попытка отправки:", { botToken, chatId, message })
+
     if (!botToken || !chatId) {
+      console.log("[TELEGRAM] Нет botToken или chatId!")
       return false
     }
 
@@ -26,12 +29,16 @@ export async function sendTelegramNotification(message: string): Promise<boolean
       }),
     })
 
+    const result = await response.json()
+    console.log("[TELEGRAM] Ответ Telegram:", result)
+
     if (!response.ok) {
       return false
     }
 
     return true
   } catch (error) {
+    console.log("[TELEGRAM] Ошибка:", error)
     return false
   }
 }

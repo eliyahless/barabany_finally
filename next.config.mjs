@@ -35,25 +35,14 @@ const nextConfig = {
   poweredByHeader: false,
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ["lucide-react"],
-    compression: {
-      brotli: {
-        level: 6,
-      },
-    },
-    modularizeImports: {
-      "lucide-react": {
-        transform: "lucide-react/dist/esm/icons/{{member}}",
-      },
-    },
     turbo: {
       rules: {
-        // Оптимизация для Tailwind CSS
         "*.css": {
-          loader: "@vercel/experimental-css-loader",
-        },
-      },
-    },
+          loaders: ["@vercel/experimental-css-loader"],
+          as: "style"
+        }
+      }
+    }
   },
   webpack: (config, { dev, isServer }) => {
     if (!dev) {
@@ -95,7 +84,8 @@ const nextConfig = {
         permanent: true,
       }
     ];
-  }
+  },
+  // output: 'export',
 };
 
 export default nextConfig;

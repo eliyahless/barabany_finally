@@ -40,10 +40,6 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-  ],
   manifest: "/manifest.json",
   robots: {
     index: true,

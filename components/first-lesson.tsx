@@ -5,7 +5,6 @@ import { Play } from "lucide-react"
 import ImageWithFallback from "@/components/ui/image-with-fallback"
 import { useScrollToElement } from "@/hooks/use-scroll-to-element"
 import { useAnalytics } from "@/hooks/use-analytics"
-import ContactForm from "@/components/contact-form" // Импортируем компонент формы
 
 export default function FirstLesson() {
   const [videoPlaying, setVideoPlaying] = useState(false)
@@ -104,15 +103,6 @@ export default function FirstLesson() {
                   Освоишь первые ритмы и брейки, найдёшь новых друзей по интересам. Мы не тратим время на лишние
                   разговоры — сразу играем.
                 </p>
-              </div>
-
-              <div
-                className={`pt-2 sm:pt-3 md:pt-4 transition-all duration-700 delay-500 ${
-                  isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                }`}
-              >
-                {/* Добавляем форму в секцию FirstLesson */}
-                <ContactForm formId="first-lesson-form" source="Секция первого урока" alternativeMessage={true} />
               </div>
             </div>
 

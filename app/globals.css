@@ -524,8 +524,14 @@ section[id] {
 }
 
 @keyframes slideUp {
-  "0%": { transform: "translateY(10px) translateX(-50%)", opacity: "0" },
-  "100%": { transform: "translateY(0) translateX(-50%)", opacity: "1" },
+  0% {
+    transform: translateY(10px) translateX(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) translateX(-50%);
+    opacity: 1;
+  }
 }
 
 .animate-slide-up {
@@ -561,7 +567,7 @@ section[id] {
 }
 
 /* Планшеты в портретной ориентации */
-@media (min-width: 768px) and (max-width: 1023px) {width: 1023px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .tablet-portrait-only {
     display: block;
   }

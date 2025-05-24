@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 import { useScrollToElement } from "@/hooks/use-scroll-to-element"
 import OptimizedImage from "@/components/ui/optimized-image"
 import { useAnalytics } from "@/hooks/use-analytics"
-import ContactForm from "@/components/contact-form" // Импортируем компонент формы
 
 export default function Hero() {
   const [fontsLoaded, setFontsLoaded] = useState(false)
@@ -89,13 +88,6 @@ export default function Hero() {
                 >
                   ЗАПИСАТЬСЯ НА БЕСПЛАТНЫЙ УРОК
                 </VolumeButton>
-              </div>
-            </AnimateOnScroll>
-
-            {/* Добавляем форму в Hero секцию */}
-            <AnimateOnScroll animation="fade-up" delay={600}>
-              <div className="mt-8 md:mt-12">
-                <ContactForm formId="hero-form" source="Hero секция" className="max-w-sm" />
               </div>
             </AnimateOnScroll>
           </div>

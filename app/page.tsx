@@ -12,7 +12,7 @@ const Testimonials = dynamic(() => import("@/components/testimonials"), { ssr: t
 const ContactCta = dynamic(() => import("@/components/contact-cta"), { ssr: true })
 const Footer = dynamic(() => import("@/components/footer"), { ssr: true })
 const BackgroundGradientAnimation = dynamic(
-  () => import("@/components/ui/background-gradient-animation").then((mod) => mod.BackgroundGradientAnimation),
+  () => import("@/components/ui/background-gradient-animation").then((mod) => mod.default),
   { ssr: true },
 )
 

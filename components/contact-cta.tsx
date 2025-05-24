@@ -49,31 +49,28 @@ export default function ContactCta() {
     const { name, value } = e.target
 
     if (name === "phone") {
-      // Обрабатываем только поле телефона
-      const digitsOnly = value.replace(/\D/g, "")
-
-      // Ограничиваем до 10 цифр (без учета +7)
+      // Оставляем только цифры, кроме префикса +7
+      let digitsOnly = value.replace(/\D/g, "")
+      // Если пользователь случайно ввёл 7 в начале, убираем её
+      if (digitsOnly.startsWith("7")) {
+        digitsOnly = digitsOnly.slice(1)
+      }
+      // Ограничиваем до 10 цифр (без учёта +7)
       const truncatedDigits = digitsOnly.slice(0, 10)
-
-      // Форматируем номер с маской
+      // Формируем номер с маской
       let formattedPhone = "+7"
       if (truncatedDigits.length > 0) {
         formattedPhone += " (" + truncatedDigits.slice(0, 3)
-
         if (truncatedDigits.length > 3) {
           formattedPhone += ") " + truncatedDigits.slice(3, 6)
-
           if (truncatedDigits.length > 6) {
             formattedPhone += "-" + truncatedDigits.slice(6, 8)
-
             if (truncatedDigits.length > 8) {
               formattedPhone += "-" + truncatedDigits.slice(8, 10)
             }
           }
         }
       }
-
-      // Обновляем состояние
       setFormData((prev) => ({
         ...prev,
         phone: formattedPhone,
@@ -169,35 +166,6 @@ export default function ContactCta() {
     setIsSubmitting(true)
 
     try {
-      // Проверяем, находимся ли мы в среде предварительного просмотра v0
-      const isPreviewEnvironment =
-        typeof window !== "undefined" &&
-        (window.location.hostname.includes("v0.dev") || window.location.hostname.includes("localhost"))
-
-      // В среде предварительного просмотра имитируем успешную отправку
-      if (isPreviewEnvironment) {
-        console.log("Preview mode: Form data", formData)
-
-        // Имитация задержки сетевого запроса
-        await new Promise((resolve) => setTimeout(resolve, 1000))
-
-        // Отслеживаем отправку формы
-        trackEvent("form_submit", "form_submit", {
-          event_category: "form",
-          event_label: "contact_cta_form",
-          form_name: "contact_cta",
-          form_success: true,
-        })
-
-        // Показываем сообщение об успехе
-        setIsSubmitted(true)
-
-        // Генерируем событие об успешной отправке формы
-        window.dispatchEvent(new Event("formSubmitted"))
-
-        return
-      }
-
       // Для реальной среды - оставляем оригинальный код
       // Создаем объект FormData для отправки
       const formDataToSend = new FormData(formRef.current || undefined)
@@ -327,8 +295,8 @@ export default function ContactCta() {
                           onChange={handleChange}
                           onFocus={handleNameFocus}
                           onBlur={handleBlur}
-                          className={`w-full px-3 py-2 border border-[#595959] focus:outline-none focus:ring-2 focus:ring-[#ffc800] rounded-md ${
-                            isFocused === "name" ? "ring-2 ring-orange-500 border-orange-500" : ""
+                          className={`w-full px-3 py-2 border border-[#595959] focus:outline-none focus:ring-2 focus:ring-[#ff5500] focus:border-[#ff5500] rounded-md bg-white text-gray-800 dark:bg-zinc-900 dark:text-white transition-colors transition-shadow duration-300 ${
+                            isFocused === "name" ? "ring-2 ring-[#ff5500] border-[#ff5500]" : ""
                           }`}
                           data-field="name"
                         />
@@ -351,8 +319,8 @@ export default function ContactCta() {
                           onChange={handleChange}
                           onFocus={handlePhoneFocus}
                           onBlur={handleBlur}
-                          className={`w-full px-3 py-2 border border-[#595959] focus:outline-none focus:ring-2 focus:ring-[#ffc800] rounded-md ${
-                            isFocused === "phone" ? "ring-2 ring-orange-500 border-orange-500" : ""
+                          className={`w-full px-3 py-2 border border-[#595959] focus:outline-none focus:ring-2 focus:ring-[#ff5500] focus:border-[#ff5500] rounded-md bg-white text-gray-800 dark:bg-zinc-900 dark:text-white transition-colors transition-shadow duration-300 ${
+                            isFocused === "phone" ? "ring-2 ring-[#ff5500] border-[#ff5500]" : ""
                           }`}
                           inputMode="tel"
                           data-field="phone"

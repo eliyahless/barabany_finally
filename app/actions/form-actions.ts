@@ -23,7 +23,7 @@ type FormResult = {
 }
 
 // Функция для создания токена защиты от CSRF
-export function generateFormToken(formId: string, timestamp: number): string {
+export async function generateFormToken(formId: string, timestamp: number): Promise<string> {
   if (!process.env.FORM_SECRET_KEY) {
     return "temp-token"
   }
@@ -56,6 +56,7 @@ function verifyFormToken(formId: string, timestamp: number, token: string): bool
 // Основная функция для обработки отправки формы
 export async function submitContactForm(formData: FormData): Promise<FormResult> {
   try {
+    console.log("[SERVER ACTION] submitContactForm вызван с:", Object.fromEntries(formData.entries()))
     // Извлекаем данные из формы
     const rawData = {
       name: formData.get("name") as string,
