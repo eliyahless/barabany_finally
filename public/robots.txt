@@ -24,7 +24,7 @@ Disallow: /*.config$
 Allow: /sitemap.xml
 
 # Указываем расположение sitemap
-Sitemap: https://neshkola.ru/sitemap.xml
+Sitemap: http://79.174.93.221:3000/sitemap.xml
 
 # Указываем расположение host
-Host: https://neshkola.ru
+Host: http://79.174.93.221:3000

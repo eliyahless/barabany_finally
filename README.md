@@ -60,22 +60,22 @@
 ## 📦 Инструкция по локальному запуску
 
 1. Клонировать репозиторий:
-\`\`\`bash
-git clone https://github.com/your-username/neshkola.git
+```bash
+git clone https://github.com/eliyahless/barabany
 cd neshkola
-\`\`\`
+```
 
 2. Установить зависимости:
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 3. Создать файл `.env.local` на основе `.env.example` и заполнить необходимые переменные окружения.
 
 4. Запустить проект в режиме разработки:
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 5. Открыть [http://localhost:3000](http://localhost:3000) в браузере.
 
@@ -116,7 +116,7 @@ npm run dev
 
 ## 📁 Структура проекта
 
-\`\`\`
+```
 neshkola/
 ├── app/                  # Next.js App Router
 │   ├── actions/          # Server Actions для форм
@@ -141,17 +141,16 @@ neshkola/
 ├── postcss.config.js     # Конфигурация PostCSS
 ├── tailwind.config.ts    # Конфигурация Tailwind CSS
 └── vercel.json           # Конфигурация Vercel
-\`\`\`
+```
 
 ## 📜 Лицензия
 
 [MIT](LICENSE)
-\`\`\`
 
 ```plaintext file=".env.example"
 # Основные настройки
 NODE_ENV=production
-NEXT_PUBLIC_SITE_URL=https://neshkola.ru
+NEXT_PUBLIC_SITE_URL=http://79.174.93.221:3000
 
 # Секретный ключ для форм (защита от CSRF)
 FORM_SECRET_KEY=

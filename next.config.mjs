@@ -1,4 +1,4 @@
-// Оптимизированная конфигурация Next.js для продакшн-деплоя
+// Оптимизированная конфигурация Next.js для статической сборки
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -10,7 +10,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: false,
+    unoptimized: true,
     formats: ["image/webp", "image/avif"],
     minimumCacheTTL: 60,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -33,59 +33,12 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
+  output: 'export',
+  basePath: '',
+  trailingSlash: true,
   experimental: {
-    optimizeCss: true,
-    turbo: {
-      rules: {
-        "*.css": {
-          loaders: ["@vercel/experimental-css-loader"],
-          as: "style"
-        }
-      }
-    }
-  },
-  webpack: (config, { dev, isServer }) => {
-    if (!dev) {
-      config.optimization.usedExports = true;
-      
-      config.optimization.splitChunks.cacheGroups = {
-        ...config.optimization.splitChunks.cacheGroups,
-        styles: {
-          name: "styles",
-          test: /\.(css|scss)$/,
-          chunks: "all",
-          enforce: true,
-        },
-      };
-      
-      config.optimization.minimize = true;
-    }
-
-    return config;
-  },
-  headers: async () => {
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on'
-          }
-        ]
-      }
-    ];
-  },
-  redirects: async () => {
-    return [
-      {
-        source: '/index',
-        destination: '/',
-        permanent: true,
-      }
-    ];
-  },
-  // output: 'export',
+    optimizeCss: false
+  }
 };
 
 export default nextConfig;

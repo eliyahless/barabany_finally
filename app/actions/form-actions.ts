@@ -1,18 +1,14 @@
 "use server"
 
 import { z } from "zod"
-import { sendTelegramNotification } from "@/lib/telegram"
+import { WEBHOOK_CONFIG } from "@/config/webhook"
 import { appendToGoogleSheet } from "@/lib/google-sheets"
-import { createHmac } from "crypto"
 
 // Схема валидации для формы
 const FormSchema = z.object({
   name: z.string().min(2, "Имя должно содержать минимум 2 символа"),
   phone: z.string().regex(/^\+7\d{10}$/, "Неверный формат номера телефона"),
   honeypot: z.string().max(0, "Обнаружен бот").optional(),
-  formId: z.string().optional(),
-  timestamp: z.number().optional(),
-  token: z.string().optional(),
 })
 
 // Тип для результата отправки формы
@@ -22,59 +18,34 @@ type FormResult = {
   data?: any
 }
 
-// Функция для создания токена защиты от CSRF
-export async function generateFormToken(formId: string, timestamp: number): Promise<string> {
-  if (!process.env.FORM_SECRET_KEY) {
-    return "temp-token"
-  }
+// Функция для отправки данных на вебхук
+async function sendToWebhook(data: any): Promise<boolean> {
+  if (!WEBHOOK_CONFIG.url) return false
 
-  const data = `${formId}:${timestamp}`
-  return createHmac("sha256", process.env.FORM_SECRET_KEY).update(data).digest("hex")
-}
+  try {
+    const response = await fetch(WEBHOOK_CONFIG.url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
 
-// Функция для проверки токена
-function verifyFormToken(formId: string, timestamp: number, token: string): boolean {
-  // Проверяем, что форма отправлена не слишком быстро (защита от ботов)
-  const now = Date.now()
-  const minSubmitTime = 1500 // минимальное время в мс для заполнения формы
-
-  if (now - timestamp < minSubmitTime) {
+    return response.ok
+  } catch (error) {
+    console.error('Ошибка отправки на вебхук:', error)
     return false
   }
-
-  // Проверяем, что токен не устарел (максимум 1 час)
-  const maxTokenAge = 60 * 60 * 1000 // 1 час в мс
-  if (now - timestamp > maxTokenAge) {
-    return false
-  }
-
-  // Проверяем сам токен
-  const expectedToken = generateFormToken(formId, timestamp)
-  return token === expectedToken
 }
 
 // Основная функция для обработки отправки формы
 export async function submitContactForm(formData: FormData): Promise<FormResult> {
   try {
-    console.log("[SERVER ACTION] submitContactForm вызван с:", Object.fromEntries(formData.entries()))
     // Извлекаем данные из формы
     const rawData = {
       name: formData.get("name") as string,
       phone: formData.get("phone") as string,
       honeypot: formData.get("website") as string, // Поле-ловушка для ботов
-      formId: formData.get("formId") as string,
-      timestamp: Number(formData.get("timestamp")),
-      token: formData.get("token") as string,
-    }
-
-    // Проверяем токен для защиты от CSRF
-    if (rawData.formId && rawData.timestamp && rawData.token) {
-      if (!verifyFormToken(rawData.formId, rawData.timestamp, rawData.token)) {
-        return {
-          success: false,
-          message: "Ошибка проверки безопасности. Пожалуйста, попробуйте еще раз.",
-        }
-      }
     }
 
     // Валидация данных
@@ -100,31 +71,13 @@ export async function submitContactForm(formData: FormData): Promise<FormResult>
       utmCampaign: formData.get("utm_campaign") || "",
     }
 
-    // Массив промисов для параллельной отправки во все каналы
-    const sendPromises = []
+    // Пытаемся отправить на вебхук
+    const webhookSuccess = await sendToWebhook(formattedData)
 
-    // 1. Отправка в Google Sheets (основной канал)
-    if (process.env.GOOGLE_SHEETS_ID) {
-      sendPromises.push(
-        appendToGoogleSheet(formattedData).catch(() => {
-          throw new Error("Не удалось сохранить данные в Google Sheets")
-        }),
-      )
+    // Если вебхук недоступен и включен fallback, отправляем в Google Sheets
+    if (!webhookSuccess && WEBHOOK_CONFIG.fallbackToGoogleSheets && WEBHOOK_CONFIG.googleSheetsId) {
+      await appendToGoogleSheet(formattedData)
     }
-
-    // 2. Отправка уведомления в Telegram (быстрое уведомление)
-    if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
-      const message = `🔔 Новая заявка!\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n📅 Дата: ${formattedData.date}\n🔍 Источник: ${formattedData.source}\n\nUTM: ${formattedData.utmSource} / ${formattedData.utmMedium} / ${formattedData.utmCampaign}`
-
-      sendPromises.push(
-        sendTelegramNotification(message).catch(() => {
-          // Не выбрасываем ошибку, так как это дополнительный канал
-        }),
-      )
-    }
-
-    // Ждем выполнения всех отправок
-    await Promise.all(sendPromises)
 
     // Возвращаем успешный результат
     return {
@@ -133,6 +86,7 @@ export async function submitContactForm(formData: FormData): Promise<FormResult>
       data: { name },
     }
   } catch (error) {
+    console.error('Ошибка при отправке формы:', error)
     // Возвращаем ошибку
     return {
       success: false,

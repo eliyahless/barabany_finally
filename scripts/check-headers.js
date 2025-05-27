@@ -12,7 +12,7 @@ const http = require("http")
 const url = require("url")
 
 // Получаем URL из аргументов командной строки или используем значение по умолчанию
-const targetUrl = process.argv[2] || "https://neshkola.ru"
+const targetUrl = process.argv[2] || "http://79.174.93.221:3000"
 const parsedUrl = url.parse(targetUrl)
 
 // Выбираем протокол

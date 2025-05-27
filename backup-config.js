@@ -54,7 +54,7 @@ module.exports = {
   // Основные настройки
   site: {
     name: "neshkola",
-    url: "https://neshkola.ru",
+    url: "http://79.174.93.221:3000",
     environment: "production",
   },
 

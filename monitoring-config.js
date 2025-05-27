@@ -49,12 +49,12 @@ module.exports = {
   // Основные URL для мониторинга
   endpoints: [
     {
-      url: "https://neshkola.ru",
+      url: "http://79.174.93.221:3000",
       name: "Главная страница",
       interval: 5, // минуты
     },
     {
-      url: "https://neshkola.ru/api/health-check",
+      url: "http://79.174.93.221:3000/api/health-check",
       name: "API Health Check",
       interval: 5, // минуты
     },

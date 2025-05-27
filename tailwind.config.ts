@@ -9,6 +9,11 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    {
+      pattern: /^(delay-|animate-|bg-|text-|border-|from-|to-|via-|grid-cols-|col-span-|gap-|space-|rounded-)/,
+    },
+  ],
   theme: {
     container: {
       center: true,

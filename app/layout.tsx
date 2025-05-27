@@ -17,11 +17,11 @@ export const metadata: Metadata = {
   title: "Школа барабанов для взрослых в Москве | Не Школа",
   description:
     "Научитесь играть на барабанах с нуля. Первый урок бесплатно! Индивидуальный подход, опытные преподаватели, гибкий график. Запишитесь на пробное занятие прямо сейчас!",
-  metadataBase: new URL("https://neshkola.ru"),
+  metadataBase: new URL("http://79.174.93.221:3000"),
   alternates: {
-    canonical: "https://neshkola.ru",
+    canonical: "http://79.174.93.221:3000",
     languages: {
-      "ru-RU": "https://neshkola.ru",
+      "ru-RU": "http://79.174.93.221:3000",
     },
   },
   keywords: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "барабанная школа москва",
     "первый урок бесплатно",
   ],
-  authors: [{ name: "Не Школа Барабанов", url: "https://neshkola.ru" }],
+  authors: [{ name: "Не Школа Барабанов", url: "http://79.174.93.221:3000" }],
   creator: "Не Школа Барабанов",
   publisher: "Не Школа Барабанов",
   formatDetection: {
@@ -82,14 +82,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ru_RU",
-    url: "https://neshkola.ru/",
+    url: "http://79.174.93.221:3000/",
     title: "Школа барабанов для взрослых в Москве | Не Школа",
     description:
       "Научитесь играть на барабанах с нуля. Первый урок бесплатно! Индивидуальный подход, опытные преподаватели, гибкий график.",
     siteName: "Не Школа Барабанов",
     images: [
       {
-        url: "https://neshkola.ru/og-image.jpg",
+        url: "http://79.174.93.221:3000/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Не Школа Барабанов - Школа барабанов для взрослых в Москве",
@@ -101,7 +101,7 @@ export const metadata: Metadata = {
     title: "Школа барабанов для взрослых в Москве | Не Школа",
     description:
       "Научитесь играть на барабанах с нуля. Первый урок бесплатно! Индивидуальный подход, опытные преподаватели, гибкий график.",
-    images: ["https://neshkola.ru/og-image.jpg"],
+    images: ["http://79.174.93.221:3000/og-image.jpg"],
     creator: "@neshkola",
     site: "@neshkola",
   },

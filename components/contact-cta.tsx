@@ -9,7 +9,7 @@ import { Plus, Check, ArrowLeft } from "lucide-react"
 import { useAnalytics } from "@/hooks/use-analytics"
 import { getSavedUTMParams } from "@/utils/utm-utils"
 import { useBrowserDetect } from "@/hooks/use-browser-detect"
-import { submitContactForm, generateFormToken } from "@/app/actions/form-actions"
+import { submitContactForm } from "@/app/actions/form-actions"
 
 export default function ContactCta() {
   // Состояния формы
@@ -22,8 +22,6 @@ export default function ContactCta() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isAlternativeMessage, setIsAlternativeMessage] = useState(false)
   const [isFocused, setIsFocused] = useState<string | null>(null)
-  const [formTimestamp, setFormTimestamp] = useState<number>(0)
-  const [formToken, setFormToken] = useState<string>("")
 
   // Рефы
   const phoneInputRef = useRef<HTMLInputElement>(null)
@@ -35,11 +33,6 @@ export default function ContactCta() {
 
   // Инициализация формы
   useEffect(() => {
-    // Генерируем временную метку и токен для защиты от CSRF
-    const timestamp = Date.now()
-    setFormTimestamp(timestamp)
-    setFormToken(generateFormToken("contact-cta-form", timestamp))
-
     // Случайно выбираем один из двух вариантов сообщения
     setIsAlternativeMessage(Math.random() > 0.5)
   }, [])
@@ -166,14 +159,10 @@ export default function ContactCta() {
     setIsSubmitting(true)
 
     try {
-      // Для реальной среды - оставляем оригинальный код
       // Создаем объект FormData для отправки
       const formDataToSend = new FormData(formRef.current || undefined)
 
       // Добавляем дополнительные данные
-      formDataToSend.append("formId", "contact-cta-form")
-      formDataToSend.append("timestamp", formTimestamp.toString())
-      formDataToSend.append("token", formToken)
       formDataToSend.append("source", "Форма в блоке CTA")
 
       // Добавляем UTM-метки, если они есть
@@ -229,11 +218,6 @@ export default function ContactCta() {
       phone: "",
       rawPhone: "",
     })
-
-    // Генерируем новый токен для следующей отправки
-    const newTimestamp = Date.now()
-    setFormTimestamp(newTimestamp)
-    setFormToken(generateFormToken("contact-cta-form", newTimestamp))
 
     // Отслеживаем закрытие формы успешной отправки
     trackEvent("cta_click", "close_success_message", {

@@ -6,7 +6,7 @@ export function StructuredData() {
     "@type": "MusicSchool",
     name: "Не Школа Барабанов",
     description: "Школа барабанов для взрослых в Москве. Научитесь играть на барабанах с нуля. Первый урок бесплатно!",
-    url: "https://neshkola.ru",
+    url: "http://79.174.93.221:3000",
     telephone: "+7XXXXXXXXXX", // Замените на реальный номер телефона
     email: "info@neshkola.ru", // Замените на реальный email
     address: {
@@ -35,7 +35,7 @@ export function StructuredData() {
         closes: "18:00",
       },
     ],
-    image: "https://neshkola.ru/og-image.jpg",
+    image: "http://79.174.93.221:3000/og-image.jpg",
     priceRange: "$$",
     sameAs: [
       "https://www.facebook.com/neshkola", // Замените на реальные ссылки
@@ -49,7 +49,7 @@ export function StructuredData() {
       price: "0",
       priceCurrency: "RUB",
       availability: "https://schema.org/InStock",
-      url: "https://neshkola.ru/#contact",
+      url: "http://79.174.93.221:3000/#contact",
       validFrom: "2023-01-01",
     },
   }

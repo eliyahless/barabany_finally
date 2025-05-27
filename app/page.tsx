@@ -19,9 +19,9 @@ const BackgroundGradientAnimation = dynamic(
 export const generateMetadata = async () => {
   return {
     alternates: {
-      canonical: "https://neshkola.ru",
+      canonical: "http://79.174.93.221:3000",
       languages: {
-        "ru-RU": "https://neshkola.ru",
+        "ru-RU": "http://79.174.93.221:3000",
       },
     },
   }

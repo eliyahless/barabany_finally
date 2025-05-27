@@ -78,7 +78,7 @@ export async function GET(req: NextRequest) {
             justifyContent: "center",
           }}
         >
-          <p style={{ color: textColor, fontSize: "24px" }}>neshkola.ru</p>
+          <p style={{ color: textColor, fontSize: "24px" }}>79.174.93.221:3000</p>
         </div>
       </div>,
       {

@@ -61,12 +61,5 @@
         }
       ]
     }
-  ],
-  "redirects": [
-    {
-      "source": "http://:domain/:path*",
-      "destination": "https://:domain/:path*",
-      "statusCode": 301
-    }
   ]
 }

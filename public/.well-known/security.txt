@@ -1,5 +1,5 @@
 Contact: mailto:security@neshkola.ru
 Expires: 2025-12-31T23:59:59+00:00
 Preferred-Languages: ru, en
-Canonical: https://neshkola.ru/.well-known/security.txt
-Policy: https://neshkola.ru/security-policy
+Canonical: http://79.174.93.221:3000/.well-known/security.txt
+Policy: http://79.174.93.221:3000/security-policy
