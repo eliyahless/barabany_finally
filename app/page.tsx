@@ -1,27 +1,53 @@
-import dynamic from "next/dynamic"
+import dynamic from 'next/dynamic'
 import Header from "@/components/header"
 import Hero from "@/components/hero"
-import FirstLesson from "@/components/first-lesson"
-import About from "@/components/about"
 import { PageViewTracker } from "@/components/analytics/page-view-tracker"
 import { StructuredData } from "@/components/seo/structured-data"
-import StickyCTAButton from "@/components/sticky-cta-button"
+import BackgroundGradientAnimation from "@/components/ui/background-gradient-animation"
 
-const Benefits = dynamic(() => import("@/components/benefits"), { ssr: true })
-const Testimonials = dynamic(() => import("@/components/testimonials"), { ssr: true })
-const ContactCta = dynamic(() => import("@/components/contact-cta"), { ssr: true })
-const Footer = dynamic(() => import("@/components/footer"), { ssr: true })
-const BackgroundGradientAnimation = dynamic(
-  () => import("@/components/ui/background-gradient-animation").then((mod) => mod.default),
-  { ssr: true },
-)
+// Ленивая загрузка компонентов, которые не видны сразу
+const FirstLesson = dynamic(() => import("@/components/first-lesson"), {
+  loading: () => <div className="h-96 flex items-center justify-center">Загрузка...</div>
+})
+const About = dynamic(() => import("@/components/about"))
+const Benefits = dynamic(() => import("@/components/benefits"))
+const Testimonials = dynamic(() => import("@/components/testimonials"))
+const ContactCta = dynamic(() => import("@/components/contact-cta"))
+const Footer = dynamic(() => import("@/components/footer"))
+const StickyCTAButton = dynamic(() => import("@/components/sticky-cta-button"))
 
 export const generateMetadata = async () => {
   return {
+    title: "Школа барабанов в Нешкола - Обучение игре на барабанах",
+    description: "Профессиональное обучение игре на барабанах в Нешкола. Индивидуальные и групповые занятия, опытные преподаватели, современное оборудование.",
     alternates: {
-      canonical: "http://79.174.93.221:3000",
+      canonical: "https://barabany-neshkola.ru",
       languages: {
-        "ru-RU": "http://79.174.93.221:3000",
+        "ru-RU": "https://barabany-neshkola.ru",
+      },
+    },
+    openGraph: {
+      title: "Школа барабанов в Нешкола - Обучение игре на барабанах",
+      description: "Профессиональное обучение игре на барабанах в Нешкола. Индивидуальные и групповые занятия, опытные преподаватели, современное оборудование.",
+      url: "https://barabany-neshkola.ru",
+      siteName: "Школа барабанов в Нешкола",
+      locale: "ru_RU",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Школа барабанов в Нешкола - Обучение игре на барабанах",
+      description: "Профессиональное обучение игре на барабанах в Нешкола. Индивидуальные и групповые занятия, опытные преподаватели, современное оборудование.",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
     },
   }

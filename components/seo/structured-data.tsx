@@ -35,7 +35,7 @@ export function StructuredData() {
         closes: "18:00",
       },
     ],
-    image: "http://79.174.93.221:3000/og-image.jpg",
+    image: "http://79.174.93.221:3000/og-image.webp",
     priceRange: "$$",
     sameAs: [
       "https://www.facebook.com/neshkola", // Замените на реальные ссылки

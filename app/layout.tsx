@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     siteName: "Не Школа Барабанов",
     images: [
       {
-        url: "http://79.174.93.221:3000/og-image.jpg",
+        url: "http://79.174.93.221:3000/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Не Школа Барабанов - Школа барабанов для взрослых в Москве",
@@ -101,7 +101,7 @@ export const metadata: Metadata = {
     title: "Школа барабанов для взрослых в Москве | Не Школа",
     description:
       "Научитесь играть на барабанах с нуля. Первый урок бесплатно! Индивидуальный подход, опытные преподаватели, гибкий график.",
-    images: ["http://79.174.93.221:3000/og-image.jpg"],
+    images: ["http://79.174.93.221:3000/og-image.webp"],
     creator: "@neshkola",
     site: "@neshkola",
   },

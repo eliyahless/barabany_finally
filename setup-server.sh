@@ -1,52 +1,33 @@
 #!/bin/bash
 
-# Обновление системы
-sudo apt update
-sudo apt upgrade -y
+# Обновляем систему
+apt update && apt upgrade -y
 
-# Установка Node.js
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs
+# Устанавливаем Nginx
+apt install -y nginx
 
-# Установка PM2
-sudo npm install -g pm2
+# Копируем конфигурацию Nginx
+cp nginx.conf /etc/nginx/sites-available/default
 
-# Установка Nginx
-sudo apt install -y nginx
+# Проверяем конфигурацию Nginx
+nginx -t
 
-# Создание конфигурации Nginx
-sudo tee /etc/nginx/sites-available/nextjs << EOF
-server {
-    listen 80;
-    server_name _;
+# Перезапускаем Nginx
+systemctl restart nginx
 
-    location / {
-        proxy_pass http://localhost:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade \$http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host \$host;
-        proxy_cache_bypass \$http_upgrade;
-    }
-}
-EOF
+# Устанавливаем Node.js
+curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+apt install -y nodejs
 
-# Активация конфигурации Nginx
-sudo ln -s /etc/nginx/sites-available/nextjs /etc/nginx/sites-enabled/
-sudo rm /etc/nginx/sites-enabled/default
+# Проверяем версии
+node --version
+npm --version
 
-# Перезапуск Nginx
-sudo systemctl restart nginx
+# Устанавливаем PM2 для управления процессами
+npm install -g pm2
 
-# Создание директории для приложения
-mkdir -p ~/app
-cd ~/app
+# Даем права на директорию
+chown -R www-data:www-data /root/app/out
+chmod -R 755 /root/app/out
 
-# Установка зависимостей и сборка приложения
-npm install
-npm run build
-
-# Запуск приложения через PM2
-pm2 start npm --name "nextjs" -- start
-pm2 save
-pm2 startup 
+echo "Настройка сервера завершена" 

@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { useScrollToElement } from "@/hooks/use-scroll-to-element"
 import { useAnalytics } from "@/hooks/use-analytics"
 import { useBrowserDetect } from "@/hooks/use-browser-detect"
+import CitySelector from "@/components/city-selector"
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -133,6 +134,10 @@ export default function Header() {
             priority
             sizes="(max-width: 640px) 96px, (max-width: 768px) 128px, 160px"
           />
+        </div>
+        {/* Селектор городов только на desktop */}
+        <div className="hidden md:block flex-1">
+          <CitySelector />
         </div>
 
         {/* Десктопное меню */}

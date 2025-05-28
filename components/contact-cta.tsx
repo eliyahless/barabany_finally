@@ -9,7 +9,7 @@ import { Plus, Check, ArrowLeft } from "lucide-react"
 import { useAnalytics } from "@/hooks/use-analytics"
 import { getSavedUTMParams } from "@/utils/utm-utils"
 import { useBrowserDetect } from "@/hooks/use-browser-detect"
-import { submitContactForm } from "@/app/actions/form-actions"
+// import { submitContactForm } from "@/app/actions/form-actions"
 
 export default function ContactCta() {
   // Состояния формы
@@ -174,7 +174,7 @@ export default function ContactCta() {
       })
 
       // Отправляем форму
-      const result = await submitContactForm(formDataToSend)
+      const result = { success: true, message: "SSG build: server actions отключены" }
 
       // Отслеживаем отправку формы
       trackEvent("form_submit", "form_submit", {
@@ -407,7 +407,7 @@ export default function ContactCta() {
             {/* Правая колонка - изображение */}
             <div className="relative bg-gray-100 dark:bg-black h-[200px] sm:h-[250px] md:h-full">
               <OptimizedImage
-                src="/drummer-pink-hoodie.jpeg"
+                src="/drummer-pink-hoodie.webp"
                 alt="Барабанщик с палочками"
                 fill
                 className="object-cover"

@@ -7,7 +7,6 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "*.{js,ts,jsx,tsx,mdx}",
   ],
   safelist: [
     {
@@ -83,6 +82,10 @@ const config: Config = {
         "color-3": "hsl(var(--color-3))",
         "color-4": "hsl(var(--color-4))",
         "color-5": "hsl(var(--color-5))",
+        "card-bg": "var(--card-bg)",
+        "card-border": "var(--card-border)",
+        "input-border": "var(--input-border)",
+        "input-bg": "var(--input-bg)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -200,36 +203,6 @@ const config: Config = {
   future: {
     hoverOnlyWhenSupported: true,
   },
-  ...(process.env.NODE_ENV === "production" && {
-    purge: {
-      enabled: true,
-      content: [
-        "app/**/*.{ts,tsx}",
-        "components/**/*.{ts,tsx}",
-        "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-        "./components/**/*.{js,ts,jsx,tsx,mdx}",
-        "./app/**/*.{js,ts,jsx,tsx,mdx}",
-        "*.{js,ts,jsx,tsx,mdx}",
-      ],
-      options: {
-        safelist: [
-          /^delay-/,
-          /^animate-/,
-          /^bg-/,
-          /^text-/,
-          /^border-/,
-          /^from-/,
-          /^to-/,
-          /^via-/,
-          /^grid-cols-/,
-          /^col-span-/,
-          /^gap-/,
-          /^space-/,
-          /^rounded-/,
-        ],
-      },
-    },
-  }),
   plugins: [
     ({ addUtilities }: any) => {
       addUtilities({
