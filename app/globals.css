@@ -1,0 +1,673 @@
+/* Правильный порядок директив Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Шрифты */
+@font-face {
+  font-family: "AvantGardeCTT";
+  src: url("/fonts/AvantGardeCTT.woff2") format("woff2"), url("/fonts/AvantGardeCTT.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BasisGrotesquePro-Regular";
+  src: url("/fonts/BasisGrotesquePro-Regular.woff2") format("woff2"), url("/fonts/BasisGrotesquePro-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Переменные */
+:root {
+  /* Светлая тема по умолчанию */
+  --foreground: #171615;
+  --background: #ffffff;
+  --accent: #ff5500;
+  --border: #e5e5e5;
+  --muted: #6b7280;
+  --card-bg: #f8f8f8;
+  --card-border: #e5e5e5;
+  --button-text: #ffffff;
+  --button-bg: #ff5500;
+  --button-hover: #e64d00;
+  --button-active: #cc4400;
+  --input-bg: #f8f8f8;
+  --input-border: #d1d5db;
+  --input-focus: #ff5500;
+  --header-bg: rgba(255, 255, 255, 0.9);
+  --header-text: #171615;
+  --gradient-start: #ffffff;
+  --gradient-end: #f8f8f8;
+
+  /* Системные fallback-шрифты для уменьшения CLS */
+  --font-basis: "BasisGrotesquePro-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --font-avant: "AvantGardeCTT", "Arial", "Helvetica", sans-serif;
+
+  /* Размеры для разных устройств */
+  --header-height-mobile: 60px;
+  --header-height-tablet: 70px;
+  --header-height-desktop: 80px;
+
+  /* Отступы */
+  --container-padding-mobile: 16px;
+  --container-padding-tablet: 24px;
+  --container-padding-desktop: 32px;
+
+  /* Типографика */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  --font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --font-size-2xl: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+  --font-size-3xl: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
+  --font-size-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3rem);
+  --font-size-5xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);
+  --font-size-6xl: clamp(3.75rem, 3rem + 3.75vw, 6rem);
+
+  /* Радиусы */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Стили для якорных ссылок и скролла */
+  --scroll-margin-top: 80px;
+  --scroll-padding-top: 80px;
+
+  /* Кроссбраузерные исправления */
+  --vh: 1vh;
+
+  --gradient-background-start: rgb(255, 255, 255);
+  --gradient-background-end: rgb(240, 240, 240);
+  --first-color: 255, 85, 0;
+  --second-color: 255, 119, 51;
+  --third-color: 255, 153, 102;
+  --fourth-color: 255, 187, 153;
+  --fifth-color: 255, 221, 204;
+  --pointer-color: 255, 85, 0;
+  --size: 100%;
+  --blending-value: hard-light;
+}
+
+/* Адаптивные переменные для разных разрешений */
+@media (max-width: 320px) {
+  :root {
+    --container-padding-mobile: 12px;
+    --scroll-margin-top: 60px;
+    --scroll-padding-top: 60px;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 375px) {
+  :root {
+    --container-padding-mobile: 16px;
+    --scroll-margin-top: 60px;
+    --scroll-padding-top: 60px;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 768px) {
+  :root {
+    --container-padding-mobile: 20px;
+    --scroll-margin-top: 70px;
+    --scroll-padding-top: 70px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --container-padding-tablet: 24px;
+    --scroll-margin-top: 80px;
+    --scroll-padding-top: 80px;
+  }
+}
+
+@media (min-width: 1025px) {
+  :root {
+    --container-padding-desktop: 32px;
+    --scroll-margin-top: 90px;
+    --scroll-padding-top: 90px;
+  }
+}
+
+/* Темная тема */
+.dark {
+  --foreground: #ffffff;
+  --background: #000000;
+  --accent: #ff5500;
+  --border: #333333;
+  --muted: #999999;
+  --card-bg: #111111;
+  --card-border: #333333;
+  --button-text: #ffffff;
+  --button-bg: #ff5500;
+  --button-hover: #e64d00;
+  --button-active: #cc4400;
+  --input-bg: #111111;
+  --input-border: #333333;
+  --input-focus: #ff5500;
+  --header-bg: rgba(0, 0, 0, 0.9);
+  --header-text: #ffffff;
+  --gradient-start: #000000;
+  --gradient-end: #111111;
+
+  --gradient-background-start: rgb(0, 0, 0);
+  --gradient-background-end: rgb(10, 10, 18);
+}
+
+/* Базовые стили */
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-basis);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Применение оптимизации шрифтов */
+html.fonts-loading body {
+  /* Предотвращаем FOIT (Flash of Invisible Text) */
+  opacity: 0.99;
+}
+
+html {
+  scroll-behavior: smooth;
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: var(--scroll-padding-top);
+}
+
+/* Якорные секции */
+section[id] {
+  scroll-margin-top: var(--scroll-margin-top);
+}
+
+/* Улучшение для сенсорных устройств */
+@media (hover: none) {
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Улучшение для больших экранов */
+@media (min-width: 2000px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
+/* Компоненты */
+@layer components {
+  .section-title {
+    @apply uppercase tracking-wider font-semibold mb-4 text-center;
+    font-family: var(--font-basis);
+    font-size: var(--font-size-sm);
+    color: var(--muted);
+  }
+
+  .section-heading {
+    @apply font-bold tracking-tight max-w-3xl mx-auto mb-8 text-center;
+    font-family: var(--font-basis);
+    font-size: var(--font-size-5xl);
+    color: var(--foreground);
+  }
+
+  .section-subheading {
+    @apply font-medium mb-6;
+    font-family: var(--font-basis);
+    font-size: var(--font-size-3xl);
+    color: var(--muted);
+  }
+
+  .card-title {
+    @apply font-bold text-center mb-4;
+    font-family: var(--font-basis);
+    font-size: var(--font-size-2xl);
+    color: var(--accent);
+  }
+
+  .card-text {
+    @apply font-medium text-center leading-relaxed;
+    font-family: var(--font-basis);
+    font-size: var(--font-size-lg);
+    color: var(--foreground);
+  }
+
+  .body-lg {
+    @apply leading-relaxed font-light;
+    font-family: var(--font-basis);
+    font-size: var(--font-size-xl);
+    color: var(--foreground);
+    opacity: 0.9;
+  }
+
+  .body-md {
+    @apply leading-relaxed;
+    font-family: var(--font-basis);
+    font-size: var(--font-size-lg);
+    color: var(--foreground);
+    opacity: 0.9;
+  }
+
+  .body-sm {
+    @apply leading-relaxed;
+    font-family: var(--font-basis);
+    font-size: var(--font-size-base);
+    color: var(--foreground);
+    opacity: 0.8;
+  }
+
+  .nav-link {
+    @apply font-medium transition-colors;
+    font-family: var(--font-basis);
+    font-size: var(--font-size-base);
+    color: var(--foreground);
+  }
+
+  .button-text {
+    @apply font-bold uppercase tracking-wide;
+    font-family: var(--font-basis);
+    font-size: var(--font-size-base);
+  }
+
+  .volume-button {
+    @apply font-bold uppercase tracking-wide rounded-full;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    font-family: var(--font-basis);
+  }
+
+  .volume-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255, 85, 0, 0.3);
+    background-color: var(--button-hover);
+  }
+
+  .volume-button:active {
+    transform: translateY(1px);
+    background-color: var(--button-active);
+  }
+
+  .volume-card {
+    @apply rounded-xl p-6;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+  }
+
+  .volume-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .responsive-container {
+    width: 100%;
+    padding-left: var(--container-padding-mobile);
+    padding-right: var(--container-padding-mobile);
+    margin: 0 auto;
+  }
+
+  @media (min-width: 640px) {
+    .responsive-container {
+      padding-left: var(--container-padding-tablet);
+      padding-right: var(--container-padding-tablet);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .responsive-container {
+      padding-left: var(--container-padding-desktop);
+      padding-right: var(--container-padding-desktop);
+    }
+  }
+
+  .text-shadow {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6);
+  }
+
+  .text-shadow-subtle {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 5px rgba(255, 85, 0, 0.5), 0 0 10px rgba(255, 85, 0, 0.3);
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .safe-left {
+    padding-left: env(safe-area-inset-left, 0);
+  }
+
+  .safe-right {
+    padding-right: env(safe-area-inset-right, 0);
+  }
+
+  .touch-callout-none {
+    -webkit-touch-callout: none;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes ripple {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.animate-ripple {
+  animation: ripple 1s linear forwards;
+  opacity: 0.7;
+  transform: translate(-50%, -50%) scale(0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-in-out forwards;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(10px) translateX(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) translateX(-50%);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-in-out forwards;
+}
+
+@media (max-width: 360px) {
+  :root {
+    --font-size-3xl: 1.5rem;
+    --font-size-2xl: 1.25rem;
+    --font-size-xl: 1.125rem;
+  }
+  .hide-on-small-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tablet-portrait-only {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .tablet-landscape-only {
+    display: block;
+  }
+}
+
+@media (min-width: 1536px) {
+  .large-screen-only {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Стили для фокуса на якорных элементах */
+[id]:focus {
+  outline: none;
+}
+
+/* Предотвращение рывков при скролле */
+.smooth-scroll-container {
+  will-change: transform;
+}
+
+/* Стили для активных якорных ссылок */
+.nav-link.active {
+  color: var(--accent);
+}
+
+/* Исправление для iOS Safari - проблемы с 100vh */
+.full-height {
+  height: 100vh; /* Fallback для браузеров, которые не поддерживают CSS-переменные */
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Исправление для iOS Safari - проблемы с position: fixed */
+.is-ios .fixed,
+.is-ios [style*="position: fixed"] {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Исправление для iOS Safari - проблемы с автозаполнением форм */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px var(--input-bg) inset !important;
+  -webkit-text-fill-color: var(--foreground) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Исправление для всех браузеров - проблемы с прыжками при изменении высоты страницы */
+.has-scrollbar {
+  padding-right: var(--scrollbar-width, 0);
+}
+
+/* Исправление для Firefox - проблемы с скроллбаром */
+@supports (scrollbar-width: thin) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted) transparent;
+  }
+}
+
+/* Исправление для Chrome/Safari - проблемы с скроллбаром */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--muted);
+  border-radius: 4px;
+}
+
+/* Исправление для iOS Safari - проблемы с tap highlight */
+.is-ios * {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Исправление для всех браузеров - проблемы с фокусом */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Исправление для iOS Safari - проблемы с инпутами */
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important; /* Предотвращает масштабирование на iOS */
+  }
+}
+
+/* Исправление для всех браузеров - проблемы с анимациями */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes first {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes second {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(-180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(-360deg) scale(1);
+  }
+}
+
+@keyframes third {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes fourth {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(-180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(-360deg) scale(1);
+  }
+}
+
+@keyframes fifth {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.animate-first {
+  animation: first 20s linear infinite;
+}
+
+.animate-second {
+  animation: second 20s linear infinite;
+}
+
+.animate-third {
+  animation: third 20s linear infinite;
+}
+
+.animate-fourth {
+  animation: fourth 20s linear infinite;
+}
+
+.animate-fifth {
+  animation: fifth 20s linear infinite;
+}
