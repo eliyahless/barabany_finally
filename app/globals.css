@@ -671,3 +671,107 @@ select:-webkit-autofill:focus {
 .animate-fifth {
   animation: fifth 20s linear infinite;
 }
+
+input, input:-webkit-autofill, input:focus {
+  color: #171615 !important;
+  background-color: #fff !important;
+}
+.dark input, .dark input:-webkit-autofill, .dark input:focus {
+  color: #171615 !important;
+  background-color: #fff !important;
+}
+input::selection, .dark input::selection {
+  color: #fff !important;
+  background: #ff5500 !important;
+}
+
+/* Стили для полей ввода */
+.form-input {
+  @apply w-full px-4 py-3 rounded-lg border-2 transition-all duration-200;
+  background-color: theme('colors.white');
+  border-color: theme('colors.gray.300');
+  color: theme('colors.gray.900');
+  caret-color: theme('colors.orange.500');
+}
+
+.form-input::placeholder {
+  color: theme('colors.gray.400');
+}
+
+.form-input:focus {
+  @apply outline-none ring-2;
+  border-color: theme('colors.orange.500');
+  ring-color: theme('colors.orange.500');
+}
+
+/* Стили для тёмной темы */
+.dark .form-input {
+  background-color: theme('colors.zinc.900');
+  border-color: theme('colors.zinc.700');
+  color: theme('colors.white');
+}
+
+.dark .form-input::placeholder {
+  color: theme('colors.zinc.500');
+}
+
+.dark .form-input:focus {
+  border-color: theme('colors.orange.500');
+  ring-color: theme('colors.orange.500');
+}
+
+/* Исправление для автозаполнения */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: theme('colors.gray.900');
+  -webkit-box-shadow: 0 0 0px 1000px theme('colors.white') inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.dark .form-input:-webkit-autofill,
+.dark .form-input:-webkit-autofill:hover,
+.dark .form-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: theme('colors.white');
+  -webkit-box-shadow: 0 0 0px 1000px theme('colors.zinc.900') inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Специфичные стили для input в форме */
+.form-input-neshkola {
+  color: #171615 !important;
+  background-color: #ffffff !important;
+  caret-color: #ff5500 !important;
+  -webkit-text-fill-color: #171615 !important;
+  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+  box-shadow: 0 0 0 30px #ffffff inset !important;
+}
+
+.form-input-neshkola::selection {
+  color: #ffffff !important;
+  background: #ff5500 !important;
+}
+
+.form-input-neshkola:focus {
+  color: #171615 !important;
+  background-color: #ffffff !important;
+  -webkit-text-fill-color: #171615 !important;
+  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+  box-shadow: 0 0 0 30px #ffffff inset !important;
+}
+
+.dark .form-input-neshkola {
+  color: #171615 !important;
+  background-color: #ffffff !important;
+  -webkit-text-fill-color: #171615 !important;
+  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+  box-shadow: 0 0 0 30px #ffffff inset !important;
+}
+
+.dark .form-input-neshkola:focus {
+  color: #171615 !important;
+  background-color: #ffffff !important;
+  -webkit-text-fill-color: #171615 !important;
+  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+  box-shadow: 0 0 0 30px #ffffff inset !important;
+}

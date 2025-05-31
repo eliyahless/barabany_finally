@@ -1,39 +1,92 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState, useRef } from "react"
 import AnimateOnScroll from "./animate-on-scroll"
-import ImageWithFallback from "@/components/ui/image-with-fallback"
+import ImageWithFallback from "./ui/image-with-fallback"
 import { Plus } from "lucide-react"
 
 export default function ContactCta() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    rawPhone: "",
   })
+  const [isFocused, setIsFocused] = useState<string | null>(null)
+  const nameInputRef = useRef<HTMLInputElement>(null)
+  const phoneInputRef = useRef<HTMLInputElement>(null)
 
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-
-    return () => {
-      window.removeEventListener("resize", checkMobile)
-    }
-  }, [])
+  // Форматирование номера для отображения
+  function formatPhone(raw: string) {
+    if (!raw) return ""
+    const digits = raw.replace(/\D/g, "").slice(0, 10)
+    if (!digits) return "+7"
+    
+    let formatted = "+7"
+    if (digits.length > 0) formatted += ` (${digits.slice(0, 3)}`
+    if (digits.length > 3) formatted += `) ${digits.slice(3, 6)}`
+    if (digits.length > 6) formatted += `-${digits.slice(6, 8)}`
+    if (digits.length > 8) formatted += `-${digits.slice(8, 10)}`
+    
+    return formatted
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    
+    if (name === "phone") {
+      // Удаляем все нецифровые символы и ограничиваем до 10 цифр
+      const digitsOnly = value.replace(/\D/g, "").slice(0, 10)
+      
+      // Обновляем состояние
+      setFormData((prev) => ({
+        ...prev,
+        phone: formatPhone(digitsOnly),
+        rawPhone: digitsOnly,
+      }))
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }))
+    }
+  }
+
+  const handlePhoneFocus = () => {
+    // Если поле пустое, добавляем +7
+    if (!formData.phone) {
+      setFormData((prev) => ({ ...prev, phone: "+7" }))
+    }
+    
+    // Устанавливаем курсор после +7
+    if (phoneInputRef.current) {
+      setTimeout(() => {
+        const length = phoneInputRef.current?.value.length || 0
+        phoneInputRef.current?.setSelectionRange(length, length)
+      }, 0)
+    }
+    
+    setIsFocused("phone")
+  }
+
+  const handleNameFocus = () => {
+    setIsFocused("name")
+  }
+
+  const handleBlur = () => {
+    setIsFocused(null)
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    
+    if (!formData.name || formData.name.trim().length < 2) {
+      alert("Введите имя (минимум 2 символа)")
+      return
+    }
+    
+    if (!formData.rawPhone || formData.rawPhone.length !== 10) {
+      alert("Введите корректный номер телефона: 10 цифр после +7")
+      return
+    }
+    
     // Form submission logic would go here
     console.log("Form submitted:", formData)
     alert("Спасибо за интерес! Мы свяжемся с вами в ближайшее время для планирования бесплатного пробного урока.")
@@ -71,8 +124,11 @@ export default function ContactCta() {
                       placeholder="Например, Кирилл"
                       value={formData.name}
                       onChange={handleChange}
+                      onFocus={handleNameFocus}
+                      onBlur={handleBlur}
                       required
-                      className="w-full px-4 py-3 border-2 border-gray-200 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300 bg-white dark:bg-zinc-800 text-gray-800 dark:text-white"
+                      className={`form-input ${isFocused === "name" ? "ring-2 ring-orange-500 border-orange-500" : ""}`}
+                      ref={nameInputRef}
                     />
                   </div>
 
@@ -87,9 +143,14 @@ export default function ContactCta() {
                       placeholder="+7"
                       value={formData.phone}
                       onChange={handleChange}
+                      onFocus={handlePhoneFocus}
+                      onBlur={handleBlur}
+                      ref={phoneInputRef}
                       required
-                      className="w-full px-4 py-3 border-2 border-gray-200 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300 bg-white dark:bg-zinc-800 text-gray-800 dark:text-white"
+                      className={`form-input ${isFocused === "phone" ? "ring-2 ring-orange-500 border-orange-500" : ""}`}
                       inputMode="tel"
+                      autoComplete="off"
+                      maxLength={18}
                     />
                   </div>
                 </div>
@@ -116,12 +177,11 @@ export default function ContactCta() {
             {/* Правая колонка - изображение */}
             <div className="relative bg-gray-100 dark:bg-black h-[200px] sm:h-[250px] md:h-full">
               <ImageWithFallback
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DSCF7745.jpg-HlzPqdA0i4bSpHh982QJihgyB6mNd7.jpeg"
-                alt="Барабанная установка"
+                src="/images/contact-cta.jpg"
+                alt="Уроки музыки в не школе"
                 fill
                 className="object-cover"
                 priority
-                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>
@@ -130,3 +190,4 @@ export default function ContactCta() {
     </section>
   )
 }
+
