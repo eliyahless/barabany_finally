@@ -148,35 +148,38 @@ neshkola/
 [MIT](LICENSE)
 \`\`\`
 
-```plaintext file=".env.example"
-# Основные настройки
-NODE_ENV=production
-NEXT_PUBLIC_SITE_URL=https://neshkola.ru
+## 🚀 Развёртывание на сервере (Ubuntu + Node.js + PM2)
 
-# Секретный ключ для форм (защита от CSRF)
-FORM_SECRET_KEY=
+1. **Клонировать репозиторий:**
+   ```bash
+   git clone https://github.com/eliyahless/barabany_finally.git
+   cd barabany_finally
+   ```
+2. **Установить зависимости:**
+   ```bash
+   npm install
+   ```
+3. **Создать и заполнить файл .env.production** (или .env.local) на основе .env.example.
+4. **Собрать проект:**
+   ```bash
+   npm run build
+   ```
+5. **Запустить через PM2:**
+   ```bash
+   pm2 start npm --name "barabany-neshkola" -- run start
+   pm2 save
+   pm2 startup
+   ```
+6. **(Опционально) Настроить nginx как reverse proxy:**
+   - Пример конфига см. в `nginx.conf.example`.
 
-# Email (Resend) - опционально
-RESEND_API_KEY=
-FROM_EMAIL=
-NOTIFICATION_EMAIL=
+### Восстановление из GitHub
 
-# Telegram (для уведомлений)
-TELEGRAM_BOT_TOKEN=
-TELEGRAM_CHAT_ID=
-
-# Google Sheets (для сохранения заявок)
-GOOGLE_SHEETS_ID=
-GOOGLE_SHEETS_RANGE=Заявки!A:G
-GOOGLE_SHEETS_CLIENT_EMAIL=
-GOOGLE_SHEETS_PRIVATE_KEY=
-
-# Аналитика (опционально)
-NEXT_PUBLIC_YANDEX_METRIKA_ENABLED=false
-NEXT_PUBLIC_GTM_ENABLED=false
-NEXT_PUBLIC_FB_PIXEL_ENABLED=false
-NEXT_PUBLIC_VK_PIXEL_ENABLED=false
-NEXT_PUBLIC_YANDEX_METRIKA_ID=
-NEXT_PUBLIC_GTM_ID=
-NEXT_PUBLIC_FB_PIXEL_ID=
-NEXT_PUBLIC_VK_PIXEL_ID=
+1. Клонируйте репозиторий и выполните шаги выше.
+2. Если нужно откатиться к определённой версии:
+   ```bash
+   git checkout <commit_hash>
+   npm install
+   npm run build
+   pm2 restart barabany-neshkola
+   ```
