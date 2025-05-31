@@ -1,9 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import ImageWithFallback from "@/components/ui/image-with-fallback"
+import ImageWithFallback from "./ui/image-with-fallback"
 import AnimateOnScroll from "./animate-on-scroll"
-import { VolumeButton } from "@/components/ui/volume-button"
 
 export default function Testimonials() {
   const [columns, setColumns] = useState(2)
@@ -79,15 +78,13 @@ export default function Testimonials() {
 
             {/* Кнопка CTA под изображением */}
             <div className="mt-4 px-4 pb-4">
-              <VolumeButton
-                variant="primary"
-                size="lg"
-                belowImage={true}
-                className="w-full rounded-full"
+              <button
+                className="cta-btn"
+                type="button"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
                 ЗАПИСАТЬСЯ НА БЕСПЛАТНЫЙ УРОК
-              </VolumeButton>
+              </button>
             </div>
           </div>
         </AnimateOnScroll>

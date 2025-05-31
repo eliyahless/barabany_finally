@@ -88,20 +88,20 @@ export default function Header() {
         isScrolled || isMobileMenuOpen ? "bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className="relative h-8 sm:h-10 md:h-16 w-32 sm:w-36 md:w-56 transition-all duration-300">
+      <div className="container mx-auto px-2 sm:px-4 flex justify-between items-center">
+        <div className="relative h-7 sm:h-8 md:h-16 w-24 sm:w-32 md:w-56 transition-all duration-300">
           <Image
             src="/logo.png"
             alt="Не Школа Барабанов"
             fill
             className="object-contain object-left"
             priority
-            sizes="(max-width: 640px) 128px, (max-width: 768px) 144px, 224px"
+            sizes="(max-width: 640px) 96px, (max-width: 768px) 128px, 224px"
           />
         </div>
 
         {/* Десктопное меню */}
-        <nav className="hidden md:flex items-center space-x-6 lg:space-x-10">
+        <nav className="hidden md:flex items-center space-x-4 lg:space-x-10">
           <a
             href="#first-lesson"
             className="nav-link text-gray-800 dark:text-white hover:text-orange-500 dark:hover:text-orange-400 font-bold"
@@ -138,7 +138,7 @@ export default function Header() {
         </nav>
 
         {/* Кнопка записи (десктоп) */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
           <ThemeToggle />
           <VolumeButton
             variant="primary"
@@ -151,17 +151,17 @@ export default function Header() {
         </div>
 
         {/* Мобильные кнопки */}
-        <div className="md:hidden flex items-center space-x-2">
+        <div className="md:hidden flex items-center space-x-1 sm:space-x-2">
           <ThemeToggle />
 
           {/* Кнопка бургер-меню (мобильная) */}
           <button
-            className="text-gray-800 dark:text-white p-1.5 focus:outline-none touch-callout-none"
+            className="text-gray-800 dark:text-white p-2 sm:p-2.5 focus:outline-none touch-callout-none rounded-md active:bg-gray-200 dark:active:bg-zinc-800"
             onClick={toggleMobileMenu}
             aria-label={isMobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={isMobileMenuOpen}
           >
-            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
@@ -170,14 +170,14 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div
           ref={menuRef}
-          className="md:hidden animate-slide-down bg-white dark:bg-black"
+          className="md:hidden animate-slide-down bg-white dark:bg-black border-t border-orange-500"
           style={{
             maxHeight: `calc(100vh - ${headerRef.current?.offsetHeight || 60}px)`,
             overflowY: "auto",
           }}
         >
-          <div className="container mx-auto px-4 py-3">
-            <nav className="flex flex-col space-y-3">
+          <div className="container mx-auto px-2 sm:px-4 py-3">
+            <nav className="flex flex-col space-y-2 sm:space-y-3">
               <a
                 href="#first-lesson"
                 className="nav-link text-gray-800 dark:text-white text-base py-2 hover:text-orange-500 dark:hover:text-orange-400 transition-colors active:text-orange-600 dark:active:text-orange-500"

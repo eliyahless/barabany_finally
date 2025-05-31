@@ -775,3 +775,7 @@ input::selection, .dark input::selection {
   -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
   box-shadow: 0 0 0 30px #ffffff inset !important;
 }
+
+.cta-btn {
+  @apply w-full max-w-[340px] mx-auto block rounded-full h-12 px-6 text-[15px] font-bold text-center bg-orange-500 hover:bg-orange-600 text-white transition-all duration-300 whitespace-normal leading-tight shadow-md active:scale-95;
+}

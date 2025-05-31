@@ -1,11 +1,11 @@
 "use client"
-import { cn } from "@/lib/utils"
+import { cn } from "../utils/cn"
 import type React from "react"
 
 import { useEffect, useRef, useState } from "react"
-import { useTheme } from "@/components/theme-provider"
+import { useTheme } from "../theme-provider"
 
-export const BackgroundGradientAnimation = ({
+function BackgroundGradientAnimation({
   gradientBackgroundStart = "rgb(255, 255, 255)",
   gradientBackgroundEnd = "rgb(240, 240, 240)",
   firstColor = "255, 85, 0",
@@ -35,7 +35,7 @@ export const BackgroundGradientAnimation = ({
   className?: string
   interactive?: boolean
   containerClassName?: string
-}) => {
+}) {
   const interactiveRef = useRef<HTMLDivElement>(null)
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
@@ -177,3 +177,5 @@ export const BackgroundGradientAnimation = ({
     </div>
   )
 }
+
+export default BackgroundGradientAnimation

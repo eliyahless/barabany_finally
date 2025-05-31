@@ -38,13 +38,13 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative w-full pt-20 md:pt-24">
+    <section className="relative w-full pt-8 sm:pt-20 md:pt-28">
       {/* TEST HERO 2024-05-31 */}
-      <div className="container mx-auto px-4 py-6 md:py-12">
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
+      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-10 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div className={`transition-opacity duration-300 ${fontsLoaded ? "opacity-100" : "opacity-95"}`}>
             <AnimateOnScroll animation="fade-up">
-              <h1 className="font-basis text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 text-orange-500 dark:text-orange-500 relative z-20 uppercase tracking-tight leading-[1.1] md:leading-tight text-shadow">
+              <h1 className="font-basis text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-5 sm:mb-8 md:mb-10 text-orange-500 dark:text-orange-500 relative z-20 uppercase tracking-tight leading-[1.1] md:leading-tight text-shadow">
                 Школа
                 <br />
                 барабанов для
@@ -55,28 +55,26 @@ export default function Hero() {
             </AnimateOnScroll>
 
             <AnimateOnScroll animation="fade-up" delay={200}>
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-700 dark:text-white mb-6 md:mb-8 max-w-md font-light leading-relaxed">
+              <p className="text-base sm:text-lg md:text-2xl lg:text-3xl text-gray-700 dark:text-white mb-5 sm:mb-8 md:mb-10 max-w-md font-light leading-relaxed">
                 Сыграйте любимую песню на барабанах уже на первом уроке!
               </p>
             </AnimateOnScroll>
 
             <AnimateOnScroll animation="fade-up" delay={400}>
-              <div className="relative inline-block w-full sm:w-auto">
-                <VolumeButton
-                  variant="primary"
-                  size="default"
-                  className="rounded-full px-6 py-3 md:px-8 md:py-4 button-text text-base md:text-lg w-full sm:w-auto"
-                  withBorder={true}
+              <div className="relative w-full max-w-[340px] mx-auto block">
+                <button
+                  className="cta-btn"
                   onClick={() => scrollToIdWithOffset("contact")}
+                  type="button"
                 >
                   ЗАПИСАТЬСЯ НА БЕСПЛАТНЫЙ УРОК
-                </VolumeButton>
+                </button>
               </div>
             </AnimateOnScroll>
           </div>
 
           <AnimateOnScroll animation="fade-in" delay={300}>
-            <div className="relative h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden mt-6 md:mt-0 hero-image-placeholder">
+            <div className="relative h-[190px] sm:h-[220px] md:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden mt-8 sm:mt-10 md:mt-0 hero-image-placeholder">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DSCF7745.jpg-HlzPqdA0i4bSpHh982QJihgyB6mNd7.jpeg"
                 alt="Девушка играет на барабанах"
