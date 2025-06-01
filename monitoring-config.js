@@ -49,12 +49,20 @@ module.exports = {
   // Основные URL для мониторинга
   endpoints: [
     {
+<<<<<<< HEAD
       url: "https://barabany-neshkola.ru",
+=======
+      url: "http://79.174.93.221:3000",
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
       name: "Главная страница",
       interval: 5, // минуты
     },
     {
+<<<<<<< HEAD
       url: "https://barabany-neshkola.ru/api/health-check",
+=======
+      url: "http://79.174.93.221:3000/api/health-check",
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
       name: "API Health Check",
       interval: 5, // минуты
     },

@@ -2,10 +2,16 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Play } from "lucide-react"
+<<<<<<< HEAD
 import ImageWithFallback from "./ui/image-with-fallback"
 import { useScrollToElement } from "../hooks/use-scroll-to-element"
 import { useAnalytics } from "../hooks/use-analytics"
 import ContactForm from "./contact-form" // Импортируем компонент формы
+=======
+import ImageWithFallback from "@/components/ui/image-with-fallback"
+import { useScrollToElement } from "@/hooks/use-scroll-to-element"
+import { useAnalytics } from "@/hooks/use-analytics"
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
 export default function FirstLesson() {
   const [videoPlaying, setVideoPlaying] = useState(false)
@@ -105,6 +111,7 @@ export default function FirstLesson() {
                   разговоры — сразу играем.
                 </p>
               </div>
+<<<<<<< HEAD
 
               <div
                 className={`pt-2 sm:pt-3 md:pt-4 transition-all duration-700 delay-500 ${
@@ -114,6 +121,8 @@ export default function FirstLesson() {
                 {/* Добавляем форму в секцию FirstLesson */}
                 <ContactForm formId="first-lesson-form" source="Секция первого урока" alternativeMessage={true} />
               </div>
+=======
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
             </div>
 
             {/* Видео с YouTube - центрированное */}

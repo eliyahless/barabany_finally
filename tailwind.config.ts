@@ -7,7 +7,15 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+<<<<<<< HEAD
     "*.{js,ts,jsx,tsx,mdx}",
+=======
+  ],
+  safelist: [
+    {
+      pattern: /^(delay-|animate-|bg-|text-|border-|from-|to-|via-|grid-cols-|col-span-|gap-|space-|rounded-)/,
+    },
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   ],
   theme: {
     container: {
@@ -78,6 +86,13 @@ const config: Config = {
         "color-3": "hsl(var(--color-3))",
         "color-4": "hsl(var(--color-4))",
         "color-5": "hsl(var(--color-5))",
+<<<<<<< HEAD
+=======
+        "card-bg": "var(--card-bg)",
+        "card-border": "var(--card-border)",
+        "input-border": "var(--input-border)",
+        "input-bg": "var(--input-bg)",
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -195,6 +210,7 @@ const config: Config = {
   future: {
     hoverOnlyWhenSupported: true,
   },
+<<<<<<< HEAD
   ...(process.env.NODE_ENV === "production" && {
     purge: {
       enabled: true,
@@ -225,6 +241,8 @@ const config: Config = {
       },
     },
   }),
+=======
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   plugins: [
     ({ addUtilities }: any) => {
       addUtilities({

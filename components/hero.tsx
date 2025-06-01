@@ -1,11 +1,19 @@
 "use client"
 import AnimateOnScroll from "./animate-on-scroll"
+<<<<<<< HEAD
 import { VolumeButton } from "./ui/volume-button"
 import { useEffect, useState } from "react"
 import { useScrollToElement } from "../hooks/use-scroll-to-element"
 import OptimizedImage from "./ui/optimized-image"
 import { useAnalytics } from "../hooks/use-analytics"
 import ContactForm from "./contact-form" // Импортируем компонент формы
+=======
+import { VolumeButton } from "@/components/ui/volume-button"
+import { useEffect, useState } from "react"
+import { useScrollToElement } from "@/hooks/use-scroll-to-element"
+import OptimizedImage from "@/components/ui/optimized-image"
+import { useAnalytics } from "@/hooks/use-analytics"
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
 export default function Hero() {
   const [fontsLoaded, setFontsLoaded] = useState(false)
@@ -91,6 +99,7 @@ export default function Hero() {
                 </VolumeButton>
               </div>
             </AnimateOnScroll>
+<<<<<<< HEAD
 
             {/* Добавляем форму в Hero секцию */}
             <AnimateOnScroll animation="fade-up" delay={600}>
@@ -98,6 +107,8 @@ export default function Hero() {
                 <ContactForm formId="hero-form" source="Hero секция" className="max-w-sm" />
               </div>
             </AnimateOnScroll>
+=======
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
           </div>
 
           <AnimateOnScroll animation="fade-in" delay={300}>

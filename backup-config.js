@@ -53,8 +53,13 @@ echo "Backup completed: ${BACKUP_FILE}"
 module.exports = {
   // Основные настройки
   site: {
+<<<<<<< HEAD
     name: "barabany-neshkola",
     url: "https://barabany-neshkola.ru",
+=======
+    name: "neshkola",
+    url: "http://79.174.93.221:3000",
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
     environment: "production",
   },
 

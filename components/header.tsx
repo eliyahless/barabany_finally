@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useState, useRef } from "react"
+<<<<<<< HEAD
 import { VolumeButton } from "./ui/volume-button"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
@@ -7,6 +8,16 @@ import { ThemeToggle } from "./theme-toggle"
 import { useScrollToElement } from "../hooks/use-scroll-to-element"
 import { useAnalytics } from "../hooks/use-analytics"
 import { useBrowserDetect } from "../hooks/use-browser-detect"
+=======
+import { VolumeButton } from "@/components/ui/volume-button"
+import Image from "next/image"
+import { Menu, X } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { useScrollToElement } from "@/hooks/use-scroll-to-element"
+import { useAnalytics } from "@/hooks/use-analytics"
+import { useBrowserDetect } from "@/hooks/use-browser-detect"
+import CitySelector from "@/components/city-selector"
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -134,6 +145,13 @@ export default function Header() {
             sizes="(max-width: 640px) 96px, (max-width: 768px) 128px, 160px"
           />
         </div>
+<<<<<<< HEAD
+=======
+        {/* Селектор городов только на desktop */}
+        <div className="hidden md:block flex-1">
+          <CitySelector />
+        </div>
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
         {/* Десктопное меню */}
         <nav className="hidden md:flex items-center space-x-6 lg:space-x-10">

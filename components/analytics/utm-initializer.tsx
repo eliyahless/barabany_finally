@@ -1,7 +1,11 @@
 "use client"
 
 import { useEffect } from "react"
+<<<<<<< HEAD
 import { saveUTMParams } from "../../utils/utm-utils"
+=======
+import { saveUTMParams } from "@/utils/utm-utils"
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
 export function UTMInitializer() {
   useEffect(() => {

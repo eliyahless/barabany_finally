@@ -1,5 +1,9 @@
 import Image, { type ImageProps } from "next/image"
+<<<<<<< HEAD
 import { optimizeImageProps } from "../../utils/image-optimizer"
+=======
+import { optimizeImageProps } from "@/utils/image-optimizer"
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
 interface SEOImageProps extends Omit<ImageProps, "alt"> {
   alt: string

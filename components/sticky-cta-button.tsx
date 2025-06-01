@@ -1,10 +1,17 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+<<<<<<< HEAD
 import { useScrollToElement } from "../hooks/use-scroll-to-element"
 import { useAnalytics } from "../hooks/use-analytics"
 import { Flame } from "lucide-react"
 import { cn } from "../utils/cn"
+=======
+import { useScrollToElement } from "@/hooks/use-scroll-to-element"
+import { useAnalytics } from "@/hooks/use-analytics"
+import { Flame } from "lucide-react"
+import { cn } from "@/lib/utils"
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
 interface StickyCTAButtonProps {
   targetId?: string

@@ -6,12 +6,20 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
+<<<<<<< HEAD
     <loc>https://barabany-neshkola.ru/</loc>
+=======
+    <loc>http://79.174.93.221:3000/</loc>
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
     <lastmod>2023-08-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
+<<<<<<< HEAD
       <image:loc>https://barabany-neshkola.ru/og-image.jpg</image:loc>
+=======
+      <image:loc>http://79.174.93.221:3000/og-image.webp</image:loc>
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
       <image:title>Не Школа Барабанов - Школа барабанов для взрослых в Москве</image:title>
       <image:caption>Научитесь играть на барабанах с нуля. Первый урок бесплатно!</image:caption>
     </image:image>

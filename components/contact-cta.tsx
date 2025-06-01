@@ -4,12 +4,21 @@ import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
 import AnimateOnScroll from "./animate-on-scroll"
+<<<<<<< HEAD
 import OptimizedImage from "./ui/optimized-image"
 import { Plus, Check, ArrowLeft } from "lucide-react"
 import { useAnalytics } from "../hooks/use-analytics"
 import { getSavedUTMParams } from "../utils/utm-utils"
 import { useBrowserDetect } from "../hooks/use-browser-detect"
 import { submitContactForm, generateFormToken } from "../app/actions/form-actions"
+=======
+import OptimizedImage from "@/components/ui/optimized-image"
+import { Plus, Check, ArrowLeft } from "lucide-react"
+import { useAnalytics } from "@/hooks/use-analytics"
+import { getSavedUTMParams } from "@/utils/utm-utils"
+import { useBrowserDetect } from "@/hooks/use-browser-detect"
+// import { submitContactForm } from "@/app/actions/form-actions"
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
 export default function ContactCta() {
   // Состояния формы
@@ -22,8 +31,11 @@ export default function ContactCta() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isAlternativeMessage, setIsAlternativeMessage] = useState(false)
   const [isFocused, setIsFocused] = useState<string | null>(null)
+<<<<<<< HEAD
   const [formTimestamp, setFormTimestamp] = useState<number>(0)
   const [formToken, setFormToken] = useState<string>("")
+=======
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
   // Рефы
   const phoneInputRef = useRef<HTMLInputElement>(null)
@@ -35,6 +47,7 @@ export default function ContactCta() {
 
   // Инициализация формы
   useEffect(() => {
+<<<<<<< HEAD
     // Генерируем временную метку и токен для защиты от CSRF
     const initializeForm = async () => {
       const timestamp = Date.now()
@@ -44,6 +57,8 @@ export default function ContactCta() {
     }
     initializeForm()
 
+=======
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
     // Случайно выбираем один из двух вариантов сообщения
     setIsAlternativeMessage(Math.random() > 0.5)
   }, [])
@@ -53,6 +68,7 @@ export default function ContactCta() {
     const { name, value } = e.target
 
     if (name === "phone") {
+<<<<<<< HEAD
       // Обрабатываем только поле телефона
       const digitsOnly = value.replace(/\D/g, "")
 
@@ -70,14 +86,35 @@ export default function ContactCta() {
           if (truncatedDigits.length > 6) {
             formattedPhone += "-" + truncatedDigits.slice(6, 8)
 
+=======
+      // Оставляем только цифры, кроме префикса +7
+      let digitsOnly = value.replace(/\D/g, "")
+      // Если пользователь случайно ввёл 7 в начале, убираем её
+      if (digitsOnly.startsWith("7")) {
+        digitsOnly = digitsOnly.slice(1)
+      }
+      // Ограничиваем до 10 цифр (без учёта +7)
+      const truncatedDigits = digitsOnly.slice(0, 10)
+      // Формируем номер с маской
+      let formattedPhone = "+7"
+      if (truncatedDigits.length > 0) {
+        formattedPhone += " (" + truncatedDigits.slice(0, 3)
+        if (truncatedDigits.length > 3) {
+          formattedPhone += ") " + truncatedDigits.slice(3, 6)
+          if (truncatedDigits.length > 6) {
+            formattedPhone += "-" + truncatedDigits.slice(6, 8)
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
             if (truncatedDigits.length > 8) {
               formattedPhone += "-" + truncatedDigits.slice(8, 10)
             }
           }
         }
       }
+<<<<<<< HEAD
 
       // Обновляем состояние
+=======
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
       setFormData((prev) => ({
         ...prev,
         phone: formattedPhone,
@@ -173,6 +210,7 @@ export default function ContactCta() {
     setIsSubmitting(true)
 
     try {
+<<<<<<< HEAD
       // Проверяем, находимся ли мы в среде предварительного просмотра v0
       const isPreviewEnvironment =
         typeof window !== "undefined" &&
@@ -203,13 +241,18 @@ export default function ContactCta() {
       }
 
       // Для реальной среды - оставляем оригинальный код
+=======
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
       // Создаем объект FormData для отправки
       const formDataToSend = new FormData(formRef.current || undefined)
 
       // Добавляем дополнительные данные
+<<<<<<< HEAD
       formDataToSend.append("formId", "contact-cta-form")
       formDataToSend.append("timestamp", formTimestamp.toString())
       formDataToSend.append("token", formToken)
+=======
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
       formDataToSend.append("source", "Форма в блоке CTA")
 
       // Добавляем UTM-метки, если они есть
@@ -221,7 +264,11 @@ export default function ContactCta() {
       })
 
       // Отправляем форму
+<<<<<<< HEAD
       const result = await submitContactForm(formDataToSend)
+=======
+      const result = { success: true, message: "SSG build: server actions отключены" }
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
       // Отслеживаем отправку формы
       trackEvent("form_submit", "form_submit", {
@@ -259,6 +306,7 @@ export default function ContactCta() {
 
   // Обработчик сброса формы
   const handleReset = () => {
+<<<<<<< HEAD
     const resetForm = async () => {
       setIsSubmitted(false)
       setFormData({
@@ -280,6 +328,20 @@ export default function ContactCta() {
       })
     }
     resetForm()
+=======
+    setIsSubmitted(false)
+    setFormData({
+      name: "",
+      phone: "",
+      rawPhone: "",
+    })
+
+    // Отслеживаем закрытие формы успешной отправки
+    trackEvent("cta_click", "close_success_message", {
+      event_category: "form",
+      event_label: "contact_cta_form",
+    })
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   }
 
   return (
@@ -335,8 +397,13 @@ export default function ContactCta() {
                           onChange={handleChange}
                           onFocus={handleNameFocus}
                           onBlur={handleBlur}
+<<<<<<< HEAD
                           className={`w-full px-3 py-2 border border-[#595959] focus:outline-none focus:ring-2 focus:ring-[#ffc800] rounded-md ${
                             isFocused === "name" ? "ring-2 ring-orange-500 border-orange-500" : ""
+=======
+                          className={`w-full px-3 py-2 border border-[#595959] focus:outline-none focus:ring-2 focus:ring-[#ff5500] focus:border-[#ff5500] rounded-md bg-white text-gray-800 dark:bg-zinc-900 dark:text-white transition-colors transition-shadow duration-300 ${
+                            isFocused === "name" ? "ring-2 ring-[#ff5500] border-[#ff5500]" : ""
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
                           }`}
                           data-field="name"
                         />
@@ -359,8 +426,13 @@ export default function ContactCta() {
                           onChange={handleChange}
                           onFocus={handlePhoneFocus}
                           onBlur={handleBlur}
+<<<<<<< HEAD
                           className={`w-full px-3 py-2 border border-[#595959] focus:outline-none focus:ring-2 focus:ring-[#ffc800] rounded-md ${
                             isFocused === "phone" ? "ring-2 ring-orange-500 border-orange-500" : ""
+=======
+                          className={`w-full px-3 py-2 border border-[#595959] focus:outline-none focus:ring-2 focus:ring-[#ff5500] focus:border-[#ff5500] rounded-md bg-white text-gray-800 dark:bg-zinc-900 dark:text-white transition-colors transition-shadow duration-300 ${
+                            isFocused === "phone" ? "ring-2 ring-[#ff5500] border-[#ff5500]" : ""
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
                           }`}
                           inputMode="tel"
                           data-field="phone"
@@ -463,7 +535,11 @@ export default function ContactCta() {
             {/* Правая колонка - изображение */}
             <div className="relative bg-gray-100 dark:bg-black h-[200px] sm:h-[250px] md:h-full">
               <OptimizedImage
+<<<<<<< HEAD
                 src="/drummer-pink-hoodie.jpeg"
+=======
+                src="/drummer-pink-hoodie.webp"
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
                 alt="Барабанщик с палочками"
                 fill
                 className="object-cover"

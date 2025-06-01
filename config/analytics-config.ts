@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import type { AnalyticsConfig } from "../components/analytics/analytics-head"
+=======
+import type { AnalyticsConfig } from "@/components/analytics/analytics-head"
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
 // Конфигурация аналитики
 export const analyticsConfig: AnalyticsConfig = {

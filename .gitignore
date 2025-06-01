@@ -37,3 +37,11 @@ next-env.d.ts
 # IDE
 .idea
 .vscode
+<<<<<<< HEAD
+=======
+
+# Large archive files
+*.tar.gz
+deploy.tar.gz
+project.tar.gz
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db

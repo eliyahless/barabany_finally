@@ -1,7 +1,11 @@
 "use client"
 
 import { useState } from "react"
+<<<<<<< HEAD
 import { useBrowserDetect } from "../hooks/use-browser-detect"
+=======
+import { useBrowserDetect } from "@/hooks/use-browser-detect"
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
 export function BrowserCompatibilityTester() {
   const [isOpen, setIsOpen] = useState(false)

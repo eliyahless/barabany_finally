@@ -2,8 +2,13 @@
 
 import { useState, useEffect } from "react"
 import Image, { type ImageProps } from "next/image"
+<<<<<<< HEAD
 import { optimizeImageProps } from "../../utils/image-optimizer"
 import { useBrowserDetect } from "../../hooks/use-browser-detect" // Добавляем импорт
+=======
+import { optimizeImageProps } from "@/utils/image-optimizer"
+import { useBrowserDetect } from "@/hooks/use-browser-detect" // Добавляем импорт
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
 type OptimizedImageProps = ImageProps & {
   fallbackSrc?: string

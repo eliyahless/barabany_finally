@@ -1,4 +1,5 @@
 "use client"
+<<<<<<< HEAD
 import { cn } from "../../utils/cn"
 import type React from "react"
 
@@ -6,6 +7,15 @@ import { useEffect, useRef, useState, useCallback } from "react"
 import { useTheme } from "../theme-provider"
 
 const BackgroundGradientAnimation = ({
+=======
+import { cn } from "@/lib/utils"
+import type React from "react"
+
+import { useEffect, useRef, useState, useCallback } from "react"
+import { useTheme } from "@/components/theme-provider"
+
+export const BackgroundGradientAnimation = ({
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   gradientBackgroundStart = "rgb(255, 255, 255)",
   gradientBackgroundEnd = "rgb(240, 240, 240)",
   firstColor = "255, 85, 0",
@@ -39,7 +49,10 @@ const BackgroundGradientAnimation = ({
   const interactiveRef = useRef<HTMLDivElement>(null)
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
+<<<<<<< HEAD
   const [isSafari, setIsSafari] = useState(false)
+=======
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
   const [curX, setCurX] = useState(0)
   const [curY, setCurY] = useState(0)
@@ -50,12 +63,19 @@ const BackgroundGradientAnimation = ({
 
   useEffect(() => {
     setMounted(true)
+<<<<<<< HEAD
     setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent))
+=======
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   }, [])
 
   useEffect(() => {
     if (!mounted) return
 
+<<<<<<< HEAD
+=======
+    // Установка цветов в зависимости от темы
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
     const isDark = theme === "dark"
     document.body.style.setProperty("--gradient-background-start", isDark ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)")
     document.body.style.setProperty("--gradient-background-end", isDark ? "rgb(10, 10, 18)" : "rgb(240, 240, 240)")
@@ -71,8 +91,11 @@ const BackgroundGradientAnimation = ({
   }, [firstColor, secondColor, thirdColor, fourthColor, fifthColor, pointerColor, size, blendingValue, theme, mounted])
 
   useEffect(() => {
+<<<<<<< HEAD
     if (!mounted) return
 
+=======
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
     function move() {
       if (!interactiveRef.current) {
         return
@@ -83,12 +106,22 @@ const BackgroundGradientAnimation = ({
     }
 
     move()
+<<<<<<< HEAD
   }, [tgX, tgY, mounted])
 
   const handleMouseMove = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
       if (!interactive || !interactiveRef.current || !mounted) return
 
+=======
+  }, [tgX, tgY])
+
+  const handleMouseMove = useCallback(
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      if (!interactive || !interactiveRef.current) return
+
+      // Используем requestAnimationFrame для оптимизации производительности
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
       if (!ticking.current) {
         window.requestAnimationFrame(() => {
           if (interactiveRef.current) {
@@ -101,12 +134,22 @@ const BackgroundGradientAnimation = ({
         ticking.current = true
       }
     },
+<<<<<<< HEAD
     [interactive, mounted],
   )
 
   if (!mounted) {
     return null
   }
+=======
+    [interactive],
+  )
+
+  const [isSafari, setIsSafari] = useState(false)
+  useEffect(() => {
+    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent))
+  }, [])
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
   return (
     <div
@@ -193,4 +236,8 @@ const BackgroundGradientAnimation = ({
   )
 }
 
+<<<<<<< HEAD
 export default BackgroundGradientAnimation
+=======
+export default BackgroundGradientAnimation;
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db

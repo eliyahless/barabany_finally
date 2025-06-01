@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
+=======
+    "target": "ES2017",
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
     "lib": [
       "dom",
       "dom.iterable",
@@ -10,8 +14,13 @@
     "strict": false,
     "noEmit": true,
     "incremental": true,
+<<<<<<< HEAD
     "esModuleInterop": true,
     "module": "esnext",
+=======
+    "module": "esnext",
+    "esModuleInterop": true,
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -20,7 +29,15 @@
       {
         "name": "next"
       }
+<<<<<<< HEAD
     ]
+=======
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   },
   "include": [
     "next-env.d.ts",

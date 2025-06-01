@@ -1,9 +1,15 @@
 "use client"
 
 import { useEffect, useState } from "react"
+<<<<<<< HEAD
 import OptimizedImage from "./ui/optimized-image"
 import AnimateOnScroll from "./animate-on-scroll"
 import { VolumeButton } from "./ui/volume-button"
+=======
+import OptimizedImage from "@/components/ui/optimized-image"
+import AnimateOnScroll from "./animate-on-scroll"
+import { VolumeButton } from "@/components/ui/volume-button"
+>>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 
 export default function Testimonials() {
   const [columns, setColumns] = useState(2)
