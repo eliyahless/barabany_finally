@@ -5,8 +5,13 @@ import AnimateOnScroll from "./animate-on-scroll"
 import { VolumeButton } from "./ui/volume-button"
 import { useEffect, useState } from "react"
 import { scrollToIdWithOffset } from "./utils/scroll"
+import type { City } from "../data/cities"
 
-export default function Hero() {
+interface HeroProps {
+  city?: City
+}
+
+export default function Hero({ city }: HeroProps) {
   const [fontsLoaded, setFontsLoaded] = useState(false)
 
   useEffect(() => {
@@ -38,9 +43,9 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative w-full pt-20 md:pt-24">
-      <div className="container mx-auto px-4 py-6 md:py-12">
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
+    <section className="relative w-full pt-0 md:pt-0 min-h-[80vh] bg-transparent">
+      <div className="container mx-auto px-4 py-2 md:py-4">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
           <div className={`transition-opacity duration-300 ${fontsLoaded ? "opacity-100" : "opacity-95"}`}>
             <AnimateOnScroll animation="fade-up">
               <h1 className="font-basis text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 text-orange-500 dark:text-orange-500 relative z-20 uppercase tracking-tight leading-[1.1] md:leading-tight text-shadow">
@@ -49,7 +54,7 @@ export default function Hero() {
                 барабанов для
                 <br />
                 взрослых в<br />
-                <span className="text-gray-800 dark:text-white">Москве</span>
+                <span className="text-gray-800 dark:text-white">{city?.nameIn || "Москве"}</span>
               </h1>
             </AnimateOnScroll>
 
@@ -63,9 +68,9 @@ export default function Hero() {
               <div className="relative inline-block w-full sm:w-auto">
                 <VolumeButton
                   variant="primary"
-                  size="default"
-                  className="rounded-full px-6 py-3 md:px-8 md:py-4 button-text text-base md:text-lg w-full sm:w-auto"
-                  withBorder={true}
+                  size="lg"
+                  belowImage={true}
+                  className="w-full rounded-full py-3 text-base md:text-lg md:w-auto md:px-8 md:py-4"
                   onClick={() => scrollToIdWithOffset("contact")}
                 >
                   ЗАПИСАТЬСЯ НА БЕСПЛАТНЫЙ УРОК
@@ -75,7 +80,7 @@ export default function Hero() {
           </div>
 
           <AnimateOnScroll animation="fade-in" delay={300}>
-            <div className="relative h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden mt-6 md:mt-0 hero-image-placeholder">
+            <div className="relative h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden hero-image-placeholder mt-8">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DSCF7745.jpg-HlzPqdA0i4bSpHh982QJihgyB6mNd7.jpeg"
                 alt="Девушка играет на барабанах"
