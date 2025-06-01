@@ -2,7 +2,7 @@
 import { cn } from "../utils/cn"
 import type React from "react"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useCallback } from "react"
 import { useTheme } from "../theme-provider"
 
 function BackgroundGradientAnimation({
@@ -39,14 +39,19 @@ function BackgroundGradientAnimation({
   const interactiveRef = useRef<HTMLDivElement>(null)
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [supportsHover, setSupportsHover] = useState(true)
 
-  const [curX, setCurX] = useState(0)
-  const [curY, setCurY] = useState(0)
-  const [tgX, setTgX] = useState(0)
-  const [tgY, setTgY] = useState(0)
+  const curX = useRef(0)
+  const curY = useRef(0)
+  const tgX = useRef(0)
+  const tgY = useRef(0)
+  const animFrame = useRef<number>()
 
   useEffect(() => {
     setMounted(true)
+    setSupportsHover(window.matchMedia('(hover: hover)').matches)
+    setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent))
   }, [])
 
   useEffect(() => {
@@ -56,6 +61,10 @@ function BackgroundGradientAnimation({
     const isDark = theme === "dark"
     document.body.style.setProperty("--gradient-background-start", isDark ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)")
     document.body.style.setProperty("--gradient-background-end", isDark ? "rgb(10, 10, 18)" : "rgb(240, 240, 240)")
+
+    // Добавляем CSS-переменные для анимаций
+    document.body.style.setProperty("--animation-duration", "15s")
+    document.body.style.setProperty("--animation-timing", "cubic-bezier(0.4, 0, 0.2, 1)")
 
     document.body.style.setProperty("--first-color", firstColor)
     document.body.style.setProperty("--second-color", secondColor)
@@ -68,25 +77,35 @@ function BackgroundGradientAnimation({
   }, [firstColor, secondColor, thirdColor, fourthColor, fifthColor, pointerColor, size, blendingValue, theme, mounted])
 
   useEffect(() => {
-    function move() {
-      if (!interactiveRef.current) {
-        return
-      }
-      setCurX(curX + (tgX - curX) / 20)
-      setCurY(curY + (tgY - curY) / 20)
-      interactiveRef.current.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`
-    }
+    if (!mounted || !supportsHover) return
 
-    move()
-  }, [tgX, tgY])
-
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (interactiveRef.current) {
-      const rect = interactiveRef.current.getBoundingClientRect()
-      setTgX(event.clientX - rect.left)
-      setTgY(event.clientY - rect.top)
+    let running = true
+    function animate() {
+      if (!interactiveRef.current) return
+      curX.current += (tgX.current - curX.current) / 20
+      curY.current += (tgY.current - curY.current) / 20
+      interactiveRef.current.style.transform = `translate3d(${Math.round(curX.current)}px, ${Math.round(curY.current)}px, 0)`
+      if (running) animFrame.current = requestAnimationFrame(animate)
     }
-  }
+    animFrame.current = requestAnimationFrame(animate)
+    return () => {
+      running = false
+      if (animFrame.current) cancelAnimationFrame(animFrame.current)
+    }
+  }, [mounted, supportsHover])
+
+  // Оптимизированный throttle для mousemove
+  const handleMouseMove = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
+    if (!supportsHover || !interactiveRef.current) return
+    
+    const now = performance.now()
+    if (now - lastMove < 16) return // 60fps
+    lastMove = now
+
+    const rect = interactiveRef.current.getBoundingClientRect()
+    tgX.current = event.clientX - rect.left
+    tgY.current = event.clientY - rect.top
+  }, [supportsHover])
 
   const [isSafari, setIsSafari] = useState(false)
   useEffect(() => {
@@ -97,22 +116,23 @@ function BackgroundGradientAnimation({
     <div
       className={cn(
         "relative overflow-hidden bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
+        "transition-opacity duration-1000 opacity-100",
         containerClassName,
       )}
     >
-      <svg className="hidden">
-        <defs>
-          <filter id="blurMe">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
-            <feBlend in="SourceGraphic" in2="goo" />
-          </filter>
-        </defs>
-      </svg>
-      <div className={cn("relative z-10", className)}>{children}</div>
+      <div 
+        className={cn(
+          "relative z-10 transition-all duration-1000 opacity-100 translate-y-0",
+          className
+        )}
+      >
+        {children}
+      </div>
       <div
         className={cn(
           "gradients-container h-full w-full blur-lg absolute inset-0",
+          "transform-gpu backface-visibility-hidden",
+          "transition-opacity duration-1000 opacity-100",
           isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]",
         )}
       >
@@ -123,6 +143,8 @@ function BackgroundGradientAnimation({
             `[transform-origin:center_center]`,
             `animate-first`,
             `opacity-30`,
+            `will-change-transform`,
+            `transition-transform duration-[var(--animation-duration)] ease-[var(--animation-timing)]`,
           )}
         ></div>
         <div
@@ -132,6 +154,8 @@ function BackgroundGradientAnimation({
             `[transform-origin:calc(50%-400px)]`,
             `animate-second`,
             `opacity-30`,
+            `will-change-transform`,
+            `transition-transform duration-[var(--animation-duration)] ease-[var(--animation-timing)]`,
           )}
         ></div>
         <div
@@ -141,28 +165,12 @@ function BackgroundGradientAnimation({
             `[transform-origin:calc(50%+400px)]`,
             `animate-third`,
             `opacity-30`,
-          )}
-        ></div>
-        <div
-          className={cn(
-            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fourth-color),_0.5)_0,_rgba(var(--fourth-color),_0)_50%)_no-repeat]`,
-            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
-            `[transform-origin:calc(50%-200px)]`,
-            `animate-fourth`,
-            `opacity-20`,
-          )}
-        ></div>
-        <div
-          className={cn(
-            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fifth-color),_0.5)_0,_rgba(var(--fifth-color),_0)_50%)_no-repeat]`,
-            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
-            `[transform-origin:calc(50%-800px)_calc(50%+800px)]`,
-            `animate-fifth`,
-            `opacity-20`,
+            `will-change-transform`,
+            `transition-transform duration-[var(--animation-duration)] ease-[var(--animation-timing)]`,
           )}
         ></div>
 
-        {interactive && (
+        {interactive && supportsHover && (
           <div
             ref={interactiveRef}
             onMouseMove={handleMouseMove}
@@ -170,6 +178,9 @@ function BackgroundGradientAnimation({
               `absolute [background:radial-gradient(circle_at_center,_rgba(var(--pointer-color),_0.5)_0,_rgba(var(--pointer-color),_0)_50%)_no-repeat]`,
               `[mix-blend-mode:var(--blending-value)] w-full h-full -top-1/2 -left-1/2`,
               `opacity-30`,
+              `will-change-transform`,
+              `transform-gpu`,
+              `transition-transform duration-300 ease-out`,
             )}
           ></div>
         )}

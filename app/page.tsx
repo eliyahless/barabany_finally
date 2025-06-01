@@ -3,6 +3,8 @@ import Header from "../components/header"
 import Hero from "../components/hero"
 import FirstLesson from "../components/first-lesson"
 import About from "../components/about"
+import CitySelector from "../components/CitySelector"
+import { getDefaultCity } from "../data/cities"
 // import { PageViewTracker } from "../components/analytics/page-view-tracker" // временно отключено
 // import { StructuredData } from "../components/seo/structured-data" // временно отключено
 // import StickyCTAButton from "../components/sticky-cta-button" // временно отключено
@@ -27,23 +29,22 @@ export const generateMetadata = async () => {
   }
 }
 
-export default function Home() {
+export default function HomePage() {
+  const defaultCity = getDefaultCity()
   return (
     <BackgroundGradientAnimation containerClassName="min-h-screen">
-      {/* <StructuredData /> */}
-
       <Header />
+      <div className="mt-3">
+        <CitySelector />
+      </div>
       <main className="min-h-screen smooth-scroll-container">
-        {/* <PageViewTracker /> */}
-
-        <Hero />
+        <Hero city={defaultCity} />
         <FirstLesson />
         <About />
         <Benefits />
         <Testimonials />
-        <ContactCta />
+        <ContactCta city={defaultCity} />
         <Footer />
-        {/* <StickyCTAButton targetId="contact" /> */}
       </main>
     </BackgroundGradientAnimation>
   )

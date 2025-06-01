@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+[selector.mdc](mdc:.cursor/rules/selector.mdc) [CitySelector.tsx](mdc:components/CitySelector.tsx)

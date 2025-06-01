@@ -83,7 +83,7 @@ export default function Testimonials() {
                 variant="primary"
                 size="lg"
                 belowImage={true}
-                className="w-full rounded-full"
+                className="w-full rounded-full py-3 text-base md:text-lg md:w-auto"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
                 ЗАПИСАТЬСЯ НА БЕСПЛАТНЫЙ УРОК

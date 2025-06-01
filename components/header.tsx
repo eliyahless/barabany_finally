@@ -84,12 +84,10 @@ export default function Header() {
   return (
     <header
       ref={headerRef}
-      className={`w-full transition-all duration-300 py-2 sm:py-3 md:py-4 fixed top-0 left-0 right-0 z-50 safe-top ${
-        isScrolled || isMobileMenuOpen ? "bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-sm" : "bg-transparent"
-      }`}
+      className="w-full pt-3 pb-0 md:pt-4 md:pb-0 bg-transparent"
     >
-      <div className="container mx-auto px-2 sm:px-4 flex justify-between items-center">
-        <div className="relative h-7 sm:h-8 md:h-16 w-24 sm:w-32 md:w-56 transition-all duration-300">
+      <div className="container mx-auto px-0 flex justify-between items-center">
+        <div className="relative h-7 sm:h-8 md:h-12 w-24 sm:w-32 md:w-48 transition-all duration-300">
           <Image
             src="/logo.png"
             alt="Не Школа Барабанов"

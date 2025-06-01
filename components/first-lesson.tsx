@@ -94,7 +94,7 @@ export default function FirstLesson() {
                   className="group relative overflow-hidden rounded-full bg-orange-500 px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 text-white shadow-md transition-all duration-300 hover:bg-orange-600 hover:shadow-lg hover:shadow-orange-500/20 active:scale-95 w-full sm:w-auto touch-callout-none"
                 >
                   <span className="relative z-10 text-sm sm:text-base md:text-lg font-bold">
-                    Записаться на бесплатный урок
+                  Записаться на бесплатный урок
                   </span>
                   <span className="absolute inset-0 z-0 bg-gradient-to-r from-orange-600 to-orange-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
                 </button>
