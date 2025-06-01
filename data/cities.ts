@@ -16,10 +16,7 @@ export const cities: City[] = [
     phone: "+7 (495) 123-45-67",
     address: "ул. Тверская, 1",
     uniqueText: "Самая большая школа барабанов в столице России",
-<<<<<<< HEAD
-=======
     image: "/images/cities/moscow.jpg",
->>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   },
   {
     slug: "mytischi",
@@ -28,114 +25,68 @@ export const cities: City[] = [
     phone: "+7 (495) 765-43-21",
     address: "ул. Центральная, 10",
     uniqueText: "Школа барабанов в Мытищах",
-<<<<<<< HEAD
-=======
     image: "/images/cities/mytischi.jpg",
->>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   },
   {
     slug: "ryazan",
     name: "Рязань",
     nameIn: "Рязани",
-<<<<<<< HEAD
     phone: "+7 (4912) 12-34-56",
     address: "ул. Ленина, 5",
     uniqueText: "Школа барабанов в Рязани",
-=======
-    phone: "+7 (491) 222-33-44",
-    address: "ул. Ленина, 15",
-    uniqueText: "Школа барабанов в Рязани",
     image: "/images/cities/ryazan.jpg",
->>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   },
   {
     slug: "ufa",
     name: "Уфа",
     nameIn: "Уфе",
-<<<<<<< HEAD
     phone: "+7 (347) 123-45-67",
     address: "ул. Октябрьская, 7",
     uniqueText: "Школа барабанов в Уфе",
-=======
-    phone: "+7 (347) 333-44-55",
-    address: "ул. Пушкина, 22",
-    uniqueText: "Школа барабанов в Уфе",
     image: "/images/cities/ufa.jpg",
->>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   },
   {
     slug: "tyumen",
     name: "Тюмень",
     nameIn: "Тюмени",
-<<<<<<< HEAD
     phone: "+7 (3452) 12-34-56",
     address: "ул. Республики, 20",
     uniqueText: "Школа барабанов в Тюмени",
-=======
-    phone: "+7 (345) 444-55-66",
-    address: "ул. Республики, 30",
-    uniqueText: "Школа барабанов в Тюмени",
     image: "/images/cities/tyumen.jpg",
->>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   },
   {
     slug: "ilyinskoe-usovo",
     name: "Ильинское-Усово",
     nameIn: "Ильинском-Усово",
-<<<<<<< HEAD
     phone: "+7 (495) 111-22-33",
     address: "ул. Новая, 3",
     uniqueText: "Школа барабанов в Ильинском-Усово",
-=======
-    phone: "+7 (495) 555-66-77",
-    address: "ул. Центральная, 5",
-    uniqueText: "Школа барабанов в Ильинском-Усово",
     image: "/images/cities/ilyinskoe.jpg",
->>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   },
   {
     slug: "krasnoyarsk",
     name: "Красноярск",
     nameIn: "Красноярске",
-<<<<<<< HEAD
     phone: "+7 (391) 123-45-67",
     address: "ул. Мира, 15",
     uniqueText: "Школа барабанов в Красноярске",
-=======
-    phone: "+7 (391) 666-77-88",
-    address: "ул. Мира, 45",
-    uniqueText: "Школа барабанов в Красноярске",
     image: "/images/cities/krasnoyarsk.jpg",
->>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   },
   {
     slug: "pyatigorsk",
     name: "Пятигорск",
     nameIn: "Пятигорске",
-<<<<<<< HEAD
     phone: "+7 (8793) 12-34-56",
     address: "ул. Советская, 8",
     uniqueText: "Школа барабанов в Пятигорске",
-=======
-    phone: "+7 (879) 777-88-99",
-    address: "ул. Кирова, 12",
-    uniqueText: "Школа барабанов в Пятигорске",
     image: "/images/cities/pyatigorsk.jpg",
->>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
   },
   {
     slug: "krasnogorsk",
     name: "Красногорск",
     nameIn: "Красногорске",
-<<<<<<< HEAD
     phone: "+7 (495) 222-33-44",
     address: "ул. Лесная, 12",
-    uniqueText: "Школа барабанов в Красногорске",
-  },
-]
-=======
-    phone: "+7 (495) 888-99-00",
-    address: "ул. Ленина, 20",
     uniqueText: "Школа барабанов в Красногорске",
     image: "/images/cities/krasnogorsk.jpg",
   },
@@ -175,7 +126,6 @@ export const cities: City[] = [
     uniqueText: "Школа барабанов во Владивостоке",
     image: "/images/cities/vladivostok.jpg",
   },
-  // Новые города:
   {
     slug: "kamchatka",
     name: "Камчатка",
@@ -212,8 +162,472 @@ export const cities: City[] = [
     uniqueText: "Школа барабанов в Хабаровске",
     image: "/images/cities/khabarovsk.jpg",
   },
-];
->>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
+  {
+    slug: "abakan",
+    name: "Абакан",
+    nameIn: "Абакане",
+  },
+  {
+    slug: "almetyevsk",
+    name: "Альметьевск",
+    nameIn: "Альметьевске",
+  },
+  {
+    slug: "anapa",
+    name: "Анапа",
+    nameIn: "Анапе",
+  },
+  {
+    slug: "angarsk",
+    name: "Ангарск",
+    nameIn: "Ангарске",
+  },
+  {
+    slug: "arkhangelsk",
+    name: "Архангельск",
+    nameIn: "Архангельске",
+  },
+  {
+    slug: "astrakhan",
+    name: "Астрахань",
+    nameIn: "Астрахани",
+  },
+  {
+    slug: "blagoveshchensk",
+    name: "Благовещенск",
+    nameIn: "Благовещенске",
+  },
+  {
+    slug: "bryansk",
+    name: "Брянск",
+    nameIn: "Брянске",
+  },
+  {
+    slug: "velikiy-novgorod",
+    name: "Великий Новгород",
+    nameIn: "Великом Новгороде",
+  },
+  {
+    slug: "vladimir",
+    name: "Владимир",
+    nameIn: "Владимире",
+  },
+  {
+    slug: "volgograd",
+    name: "Волгоград",
+    nameIn: "Волгограде",
+  },
+  {
+    slug: "vologda",
+    name: "Вологда",
+    nameIn: "Вологде",
+  },
+  {
+    slug: "vsevolozhsk",
+    name: "Всеволожск",
+    nameIn: "Всеволожске",
+  },
+  {
+    slug: "gatcina",
+    name: "Гатчина",
+    nameIn: "Гатчине",
+  },
+  {
+    slug: "domodedovo",
+    name: "Домодедово",
+    nameIn: "Домодедово",
+  },
+  {
+    slug: "zhukovskiy",
+    name: "Жуковский",
+    nameIn: "Жуковском",
+  },
+  {
+    slug: "zvenigorod",
+    name: "Звенигород",
+    nameIn: "Звенигороде",
+  },
+  {
+    slug: "ivanovo",
+    name: "Иваново",
+    nameIn: "Иваново",
+  },
+  {
+    slug: "izhevsk",
+    name: "Ижевск",
+    nameIn: "Ижевске",
+  },
+  {
+    slug: "yoshkar-ola",
+    name: "Йошкар-Ола",
+    nameIn: "Йошкар-Оле",
+  },
+  {
+    slug: "kazan",
+    name: "Казань",
+    nameIn: "Казани",
+  },
+  {
+    slug: "kaliningrad",
+    name: "Калининград",
+    nameIn: "Калининграде",
+  },
+  {
+    slug: "kaluga",
+    name: "Калуга",
+    nameIn: "Калуге",
+  },
+  {
+    slug: "kemerovo",
+    name: "Кемерово",
+    nameIn: "Кемерово",
+  },
+  {
+    slug: "kirov",
+    name: "Киров",
+    nameIn: "Кирове",
+  },
+  {
+    slug: "klin",
+    name: "Клин",
+    nameIn: "Клину",
+  },
+  {
+    slug: "kolpino",
+    name: "Колпино",
+    nameIn: "Колпино",
+  },
+  {
+    slug: "kommunarka",
+    name: "Коммунарка",
+    nameIn: "Коммунарке",
+  },
+  {
+    slug: "korolev",
+    name: "Королёв",
+    nameIn: "Королёве",
+  },
+  {
+    slug: "kostroma",
+    name: "Кострома",
+    nameIn: "Костроме",
+  },
+  {
+    slug: "kurgan",
+    name: "Курган",
+    nameIn: "Кургане",
+  },
+  {
+    slug: "kursk",
+    name: "Курск",
+    nameIn: "Курске",
+  },
+  {
+    slug: "lipetsk",
+    name: "Липецк",
+    nameIn: "Липецке",
+  },
+  {
+    slug: "lobnya",
+    name: "Лобня",
+    nameIn: "Лобне",
+  },
+  {
+    slug: "lyubertsy",
+    name: "Люберцы",
+    nameIn: "Люберцах",
+  },
+  {
+    slug: "magnitogorsk",
+    name: "Магнитогорск",
+    nameIn: "Магнитогорске",
+  },
+  {
+    slug: "minsk",
+    name: "Минск",
+    nameIn: "Минске",
+  },
+  {
+    slug: "murino",
+    name: "Мурино",
+    nameIn: "Мурино",
+  },
+  {
+    slug: "murmansk",
+    name: "Мурманск",
+    nameIn: "Мурманске",
+  },
+  {
+    slug: "naberezhnye-chelny",
+    name: "Набережные Челны",
+    nameIn: "Набережных Челнах",
+  },
+  {
+    slug: "naro-fominsk",
+    name: "Наро-Фоминск",
+    nameIn: "Наро-Фоминске",
+  },
+  {
+    slug: "nevinnomyssk",
+    name: "Невинномысск",
+    nameIn: "Невинномысске",
+  },
+  {
+    slug: "nizhniy-novgorod",
+    name: "Нижний Новгород",
+    nameIn: "Нижнем Новгороде",
+  },
+  {
+    slug: "nizhniy-tagil",
+    name: "Нижний Тагил",
+    nameIn: "Нижнем Тагиле",
+  },
+  {
+    slug: "novokuznetsk",
+    name: "Новокузнецк",
+    nameIn: "Новокузнецке",
+  },
+  {
+    slug: "novorossiysk",
+    name: "Новороссийск",
+    nameIn: "Новороссийске",
+  },
+  {
+    slug: "novosibirsk",
+    name: "Новосибирск",
+    nameIn: "Новосибирске",
+  },
+  {
+    slug: "noginsk",
+    name: "Ногинск",
+    nameIn: "Ногинске",
+  },
+  {
+    slug: "odintsovo",
+    name: "Одинцово",
+    nameIn: "Одинцово",
+  },
+  {
+    slug: "omsk",
+    name: "Омск",
+    nameIn: "Омске",
+  },
+  {
+    slug: "orel",
+    name: "Орёл",
+    nameIn: "Орле",
+  },
+  {
+    slug: "orenburg",
+    name: "Оренбург",
+    nameIn: "Оренбурге",
+  },
+  {
+    slug: "penza",
+    name: "Пенза",
+    nameIn: "Пензе",
+  },
+  {
+    slug: "perm",
+    name: "Пермь",
+    nameIn: "Перми",
+  },
+  {
+    slug: "petrozavodsk",
+    name: "Петрозаводск",
+    nameIn: "Петрозаводске",
+  },
+  {
+    slug: "petropavlovsk-kamchatsky",
+    name: "Петропавловск-Камчатский",
+    nameIn: "Петропавловске-Камчатском",
+  },
+  {
+    slug: "podolsk",
+    name: "Подольск",
+    nameIn: "Подольске",
+  },
+  {
+    slug: "pushkin",
+    name: "Пушкин",
+    nameIn: "Пушкине",
+  },
+  {
+    slug: "pushkino",
+    name: "Пушкино",
+    nameIn: "Пушкино",
+  },
+  {
+    slug: "rostov-na-donu",
+    name: "Ростов-на-Дону",
+    nameIn: "Ростове-на-Дону",
+  },
+  {
+    slug: "rybinsk",
+    name: "Рыбинск",
+    nameIn: "Рыбинске",
+  },
+  {
+    slug: "samara",
+    name: "Самара",
+    nameIn: "Самаре",
+  },
+  {
+    slug: "saransk",
+    name: "Саранск",
+    nameIn: "Саранске",
+  },
+  {
+    slug: "saratov",
+    name: "Саратов",
+    nameIn: "Саратове",
+  },
+  {
+    slug: "sevastopol",
+    name: "Севастополь",
+    nameIn: "Севастополе",
+  },
+  {
+    slug: "severodvinsk",
+    name: "Северодвинск",
+    nameIn: "Северодвинске",
+  },
+  {
+    slug: "sergiev-posad",
+    name: "Сергиев Посад",
+    nameIn: "Сергиевом Посаде",
+  },
+  {
+    slug: "simferopol",
+    name: "Симферополь",
+    nameIn: "Симферополе",
+  },
+  {
+    slug: "sochi",
+    name: "Сочи",
+    nameIn: "Сочи",
+  },
+  {
+    slug: "stavropol",
+    name: "Ставрополь",
+    nameIn: "Ставрополе",
+  },
+  {
+    slug: "syktyvkar",
+    name: "Сыктывкар",
+    nameIn: "Сыктывкаре",
+  },
+  {
+    slug: "tambov",
+    name: "Тамбов",
+    nameIn: "Тамбове",
+  },
+  {
+    slug: "tver",
+    name: "Тверь",
+    nameIn: "Твери",
+  },
+  {
+    slug: "tolyatti",
+    name: "Тольятти",
+    nameIn: "Тольятти",
+  },
+  {
+    slug: "tomsk",
+    name: "Томск",
+    nameIn: "Томске",
+  },
+  {
+    slug: "troitsk",
+    name: "Троицк",
+    nameIn: "Троицке",
+  },
+  {
+    slug: "tula",
+    name: "Тула",
+    nameIn: "Туле",
+  },
+  {
+    slug: "ulan-ude",
+    name: "Улан-Удэ",
+    nameIn: "Улан-Удэ",
+  },
+  {
+    slug: "ulyanovsk",
+    name: "Ульяновск",
+    nameIn: "Ульяновске",
+  },
+  {
+    slug: "ussuriysk",
+    name: "Уссурийск",
+    nameIn: "Уссурийске",
+  },
+  {
+    slug: "ukhta",
+    name: "Ухта",
+    nameIn: "Ухте",
+  },
+  {
+    slug: "khanty-mansiysk",
+    name: "Ханты-Мансийск",
+    nameIn: "Ханты-Мансийске",
+  },
+  {
+    slug: "khimki",
+    name: "Химки",
+    nameIn: "Химках",
+  },
+  {
+    slug: "cheboksary",
+    name: "Чебоксары",
+    nameIn: "Чебоксарах",
+  },
+  {
+    slug: "chelyabinsk",
+    name: "Челябинск",
+    nameIn: "Челябинске",
+  },
+  {
+    slug: "cherepovets",
+    name: "Череповец",
+    nameIn: "Череповце",
+  },
+  {
+    slug: "chita",
+    name: "Чита",
+    nameIn: "Чите",
+  },
+  {
+    slug: "shymkent",
+    name: "Шымкент",
+    nameIn: "Шымкенте",
+  },
+  {
+    slug: "shchyolkovo",
+    name: "Щёлково",
+    nameIn: "Щёлково",
+  },
+  {
+    slug: "engels",
+    name: "Энгельс",
+    nameIn: "Энгельсе",
+  },
+  {
+    slug: "yakutsk",
+    name: "Якутск",
+    nameIn: "Якутске",
+  },
+  {
+    slug: "yalta",
+    name: "Ялта",
+    nameIn: "Ялте",
+  },
+  {
+    slug: "yaroslavl",
+    name: "Ярославль",
+    nameIn: "Ярославле",
+  },
+]
 
 export function getCityBySlug(slug: string): City | undefined {
   return cities.find((city) => city.slug === slug)
@@ -224,9 +638,5 @@ export function cityExists(slug: string): boolean {
 }
 
 export function getDefaultCity(): City {
-<<<<<<< HEAD
   return cities[0]
-=======
-  return cities[0] // Москва как город по умолчанию
->>>>>>> fc660b95daeb2f3b5c692545891ef8e4c2d656db
 } 
