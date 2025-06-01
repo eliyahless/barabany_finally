@@ -3,7 +3,9 @@
 import { useState, useRef, useEffect } from "react"
 import { Play } from "lucide-react"
 import ImageWithFallback from "./ui/image-with-fallback"
-import { scrollToIdWithOffset } from "./utils/scroll"
+import { useScrollToElement } from "../hooks/use-scroll-to-element"
+import { useAnalytics } from "../hooks/use-analytics"
+import ContactForm from "./contact-form" // Импортируем компонент формы
 
 export default function FirstLesson() {
   const [videoPlaying, setVideoPlaying] = useState(false)
@@ -11,6 +13,8 @@ export default function FirstLesson() {
   const [isMobile, setIsMobile] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
   const videoId = "oaUsDCVVmeo"
+  const { scrollToElement } = useScrollToElement()
+  const { trackEvent } = useAnalytics()
 
   useEffect(() => {
     const checkMobile = () => {
@@ -46,6 +50,24 @@ export default function FirstLesson() {
 
   const playVideo = () => {
     setVideoPlaying(true)
+
+    // Отслеживаем воспроизведение видео
+    trackEvent("cta_click", "play_video", {
+      event_category: "video",
+      event_label: videoId,
+      video_title: "Первый урок в Не Школе Барабанов",
+    })
+  }
+
+  const handleCtaClick = () => {
+    scrollToElement("contact")
+
+    // Отслеживаем клик по CTA кнопке в секции FirstLesson
+    trackEvent("cta_click", "first_lesson_cta", {
+      event_category: "cta",
+      event_label: "first_lesson",
+      cta_text: "Записаться на бесплатный урок",
+    })
   }
 
   return (
@@ -89,15 +111,8 @@ export default function FirstLesson() {
                   isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               >
-                <button
-                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                  className="group relative overflow-hidden rounded-full bg-orange-500 px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 text-white shadow-md transition-all duration-300 hover:bg-orange-600 hover:shadow-lg hover:shadow-orange-500/20 active:scale-95 w-full sm:w-auto touch-callout-none"
-                >
-                  <span className="relative z-10 text-sm sm:text-base md:text-lg font-bold">
-                  Записаться на бесплатный урок
-                  </span>
-                  <span className="absolute inset-0 z-0 bg-gradient-to-r from-orange-600 to-orange-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-                </button>
+                {/* Добавляем форму в секцию FirstLesson */}
+                <ContactForm formId="first-lesson-form" source="Секция первого урока" alternativeMessage={true} />
               </div>
             </div>
 
@@ -120,6 +135,10 @@ export default function FirstLesson() {
                         playVideo()
                       }
                     }}
+                    data-event="cta_click"
+                    data-event-category="video"
+                    data-event-label="play_video"
+                    data-track-cta="play_video"
                   >
                     <div className="relative z-10">
                       <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center transform transition-transform group-hover:scale-110 border border-white/20">
@@ -150,7 +169,7 @@ export default function FirstLesson() {
                     allowFullScreen
                     className="absolute inset-0"
                     loading="lazy"
-                  ></iframe>
+                  />
                 )}
               </div>
             </div>

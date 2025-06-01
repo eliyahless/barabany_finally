@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import ImageWithFallback from "./ui/image-with-fallback"
+import OptimizedImage from "./ui/optimized-image"
 import AnimateOnScroll from "./animate-on-scroll"
 import { VolumeButton } from "./ui/volume-button"
 
@@ -66,7 +66,7 @@ export default function Testimonials() {
           <div className="relative rounded-xl sm:rounded-2xl overflow-hidden flex flex-col">
             {/* Фоновое изображение */}
             <div className="relative h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] w-full">
-              <ImageWithFallback
+              <OptimizedImage
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DSCF6342.jpg-12WChmM8uyomeg4vbEr7YeMgP83nkk.jpeg"
                 alt="Барабанщик в красных перчатках"
                 fill
@@ -83,7 +83,7 @@ export default function Testimonials() {
                 variant="primary"
                 size="lg"
                 belowImage={true}
-                className="w-full rounded-full py-3 text-base md:text-lg md:w-auto"
+                className="w-full rounded-full"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
                 ЗАПИСАТЬСЯ НА БЕСПЛАТНЫЙ УРОК

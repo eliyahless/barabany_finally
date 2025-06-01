@@ -1,9 +1,8 @@
 "use client"
 
 import type React from "react"
-
 import { useEffect, useRef, useState } from "react"
-import { cn } from "./utils/cn"
+import { cn } from "../utils/cn"
 
 type AnimateOnScrollProps = {
   children: React.ReactNode
@@ -13,6 +12,7 @@ type AnimateOnScrollProps = {
   threshold?: number
   once?: boolean
   rootMargin?: string
+  disabled?: boolean
 }
 
 export default function AnimateOnScroll({
@@ -23,63 +23,80 @@ export default function AnimateOnScroll({
   threshold = 0.1,
   once = true,
   rootMargin = "0px",
+  disabled = false,
 }: AnimateOnScrollProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [hasAnimated, setHasAnimated] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
+  // Проверяем предпочтения пользователя только один раз при монтировании
   useEffect(() => {
     // Проверка предпочтений пользователя по уменьшению движения
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
-    setPrefersReducedMotion(mediaQuery.matches)
+    if (typeof window !== "undefined") {
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
+      setPrefersReducedMotion(mediaQuery.matches)
 
-    const handleMediaQueryChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
-    }
+      const handleMediaQueryChange = (e: MediaQueryListEvent) => {
+        setPrefersReducedMotion(e.matches)
+      }
 
-    mediaQuery.addEventListener("change", handleMediaQueryChange)
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange)
+      mediaQuery.addEventListener("change", handleMediaQueryChange)
+      return () => {
+        mediaQuery.removeEventListener("change", handleMediaQueryChange)
+      }
     }
   }, [])
 
+  // Оптимизированный IntersectionObserver
   useEffect(() => {
-    // Если пользователь предпочитает уменьшенное движение, показываем контент сразу
-    if (prefersReducedMotion) {
+    // Если анимации отключены или пользователь предпочитает уменьшенное движение, показываем контент сразу
+    if (disabled || prefersReducedMotion) {
       setIsVisible(true)
       return
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          setHasAnimated(true)
-          if (once && ref.current) {
-            observer.unobserve(ref.current)
+    // Используем requestIdleCallback для отложенной инициализации IntersectionObserver
+    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 1))
+    const idleId = idleCallback(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+            setHasAnimated(true)
+            if (once && ref.current) {
+              observer.unobserve(ref.current)
+            }
+          } else if (!once && hasAnimated) {
+            setIsVisible(false)
           }
-        } else if (!once && hasAnimated) {
-          setIsVisible(false)
-        }
-      },
-      {
-        threshold,
-        rootMargin,
-      },
-    )
+        },
+        {
+          threshold,
+          rootMargin,
+        },
+      )
 
-    const currentRef = ref.current
-    if (currentRef) {
-      observer.observe(currentRef)
-    }
+      const currentRef = ref.current
+      if (currentRef) {
+        observer.observe(currentRef)
+      }
+
+      return () => {
+        if (currentRef) {
+          observer.unobserve(currentRef)
+        }
+      }
+    })
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef)
+      if (window.cancelIdleCallback) {
+        window.cancelIdleCallback(idleId)
+      } else {
+        clearTimeout(idleId)
       }
     }
-  }, [once, threshold, rootMargin, hasAnimated, prefersReducedMotion])
+  }, [once, threshold, rootMargin, hasAnimated, prefersReducedMotion, disabled])
 
   const animationClasses = {
     "fade-up": "opacity-0 translate-y-8 transition-all duration-700 ease-out",
@@ -95,8 +112,8 @@ export default function AnimateOnScroll({
     "scale-up": "opacity-100 scale-100",
   }
 
-  // Если пользователь предпочитает уменьшенное движение, не применяем анимацию
-  if (prefersReducedMotion) {
+  // Если анимации отключены или пользователь предпочитает уменьшенное движение, не применяем анимацию
+  if (disabled || prefersReducedMotion) {
     return <div className={className}>{children}</div>
   }
 

@@ -58,17 +58,17 @@
   --container-padding-tablet: 24px;
   --container-padding-desktop: 32px;
 
-  /* Типографика */
-  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-  --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
-  --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
-  --font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
-  --font-size-2xl: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
-  --font-size-3xl: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
-  --font-size-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3rem);
-  --font-size-5xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);
-  --font-size-6xl: clamp(3.75rem, 3rem + 3.75vw, 6rem);
+  /* Типографика - mobile-first подход */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
+  --font-size-6xl: 3.75rem; /* 60px */
 
   /* Радиусы */
   --radius-sm: 0.25rem;
@@ -221,53 +221,95 @@ section[id] {
   .section-heading {
     @apply font-bold tracking-tight max-w-3xl mx-auto mb-8 text-center;
     font-family: var(--font-basis);
-    font-size: var(--font-size-5xl);
+    font-size: var(--font-size-3xl);
     color: var(--foreground);
+  }
+
+  @media (min-width: 768px) {
+    .section-heading {
+      font-size: var(--font-size-5xl);
+    }
   }
 
   .section-subheading {
     @apply font-medium mb-6;
     font-family: var(--font-basis);
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-xl);
     color: var(--muted);
+  }
+
+  @media (min-width: 768px) {
+    .section-subheading {
+      font-size: var(--font-size-3xl);
+    }
   }
 
   .card-title {
     @apply font-bold text-center mb-4;
     font-family: var(--font-basis);
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-xl);
     color: var(--accent);
+  }
+
+  @media (min-width: 768px) {
+    .card-title {
+      font-size: var(--font-size-2xl);
+    }
   }
 
   .card-text {
     @apply font-medium text-center leading-relaxed;
     font-family: var(--font-basis);
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-base);
     color: var(--foreground);
+  }
+
+  @media (min-width: 768px) {
+    .card-text {
+      font-size: var(--font-size-lg);
+    }
   }
 
   .body-lg {
     @apply leading-relaxed font-light;
     font-family: var(--font-basis);
-    font-size: var(--font-size-xl);
-    color: var(--foreground);
-    opacity: 0.9;
-  }
-
-  .body-md {
-    @apply leading-relaxed;
-    font-family: var(--font-basis);
     font-size: var(--font-size-lg);
     color: var(--foreground);
     opacity: 0.9;
   }
 
-  .body-sm {
+  @media (min-width: 768px) {
+    .body-lg {
+      font-size: var(--font-size-xl);
+    }
+  }
+
+  .body-md {
     @apply leading-relaxed;
     font-family: var(--font-basis);
     font-size: var(--font-size-base);
     color: var(--foreground);
+    opacity: 0.9;
+  }
+
+  @media (min-width: 768px) {
+    .body-md {
+      font-size: var(--font-size-lg);
+    }
+  }
+
+  .body-sm {
+    @apply leading-relaxed;
+    font-family: var(--font-basis);
+    font-size: var(--font-size-sm);
+    color: var(--foreground);
     opacity: 0.8;
+  }
+
+  @media (min-width: 768px) {
+    .body-sm {
+      font-size: var(--font-size-base);
+    }
   }
 
   .nav-link {
@@ -280,7 +322,13 @@ section[id] {
   .button-text {
     @apply font-bold uppercase tracking-wide;
     font-family: var(--font-basis);
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-sm);
+  }
+
+  @media (min-width: 768px) {
+    .button-text {
+      font-size: var(--font-size-base);
+    }
   }
 
   .volume-button {
@@ -292,6 +340,7 @@ section[id] {
     background-color: var(--button-bg);
     color: var(--button-text);
     font-family: var(--font-basis);
+    min-height: 44px; /* Минимальная высота по рекомендациям Apple/Google */
   }
 
   .volume-button:hover {
@@ -319,6 +368,7 @@ section[id] {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }
 
+  /* Адаптивные контейнеры */
   .responsive-container {
     width: 100%;
     padding-left: var(--container-padding-mobile);
@@ -340,6 +390,48 @@ section[id] {
     }
   }
 
+  /* Стили для форм */
+  .form-input {
+    @apply w-full px-4 py-3 border-2 rounded-lg transition-all duration-300;
+    min-height: 44px; /* Минимальная высота по рекомендациям Apple/Google */
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--foreground);
+    -webkit-appearance: none; /* Предотвращает стилизацию iOS */
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .form-input:focus {
+    @apply outline-none ring-2;
+    border-color: var(--input-focus);
+    ring-color: var(--input-focus);
+  }
+
+  .form-label {
+    @apply block text-sm font-medium mb-1;
+    color: var(--foreground);
+  }
+
+  .form-submit {
+    @apply w-full font-bold py-3 px-6 rounded-full transition-all duration-300 flex items-center justify-center;
+    min-height: 44px; /* Минимальная высота по рекомендациям Apple/Google */
+    background-color: var(--button-bg);
+    color: var(--button-text);
+  }
+
+  .form-submit:hover {
+    background-color: var(--button-hover);
+  }
+
+  .form-submit:active {
+    background-color: var(--button-active);
+    transform: translateY(1px);
+  }
+}
+
+/* Утилиты */
+@layer utilities {
   .text-shadow {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   }
@@ -375,8 +467,19 @@ section[id] {
   .touch-callout-none {
     -webkit-touch-callout: none;
   }
+
+  /* Минимальная высота для интерактивных элементов */
+  .min-touch-height {
+    min-height: 44px;
+  }
+
+  /* Минимальная ширина для интерактивных элементов */
+  .min-touch-width {
+    min-width: 44px;
+  }
 }
 
+/* Анимации */
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -449,35 +552,56 @@ section[id] {
   animation: slideUp 0.3s ease-in-out forwards;
 }
 
-@media (max-width: 360px) {
+/* Медиа-запросы для различных устройств */
+/* Маленькие мобильные устройства */
+@media (max-width: 320px) {
+  .hide-on-small-mobile {
+    display: none;
+  }
+
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /* Уменьшаем размеры шрифтов для очень маленьких экранов */
   :root {
     --font-size-3xl: 1.5rem;
     --font-size-2xl: 1.25rem;
     --font-size-xl: 1.125rem;
   }
-  .hide-on-small-mobile {
-    display: none;
+}
+
+/* iPhone SE и подобные */
+@media (min-width: 321px) and (max-width: 375px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 
+/* Планшеты в портретной ориентации */
 @media (min-width: 768px) and (max-width: 1023px) {
   .tablet-portrait-only {
     display: block;
   }
 }
 
+/* Планшеты в альбомной ориентации */
 @media (min-width: 1024px) and (max-width: 1279px) {
   .tablet-landscape-only {
     display: block;
   }
 }
 
+/* Большие экраны */
 @media (min-width: 1536px) {
   .large-screen-only {
     display: block;
   }
 }
 
+/* Предпочтение уменьшенного движения */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -670,127 +794,4 @@ select:-webkit-autofill:focus {
 
 .animate-fifth {
   animation: fifth 20s linear infinite;
-}
-
-input, input:-webkit-autofill, input:focus {
-  color: #171615 !important;
-  background-color: #fff !important;
-}
-.dark input, .dark input:-webkit-autofill, .dark input:focus {
-  color: #171615 !important;
-  background-color: #fff !important;
-}
-input::selection, .dark input::selection {
-  color: #fff !important;
-  background: #ff5500 !important;
-}
-
-/* Стили для полей ввода */
-.form-input {
-  @apply w-full px-4 py-3 rounded-lg border-2 transition-all duration-200;
-  background-color: theme('colors.white');
-  border-color: theme('colors.gray.300');
-  color: theme('colors.gray.900');
-  caret-color: theme('colors.orange.500');
-}
-
-.form-input::placeholder {
-  color: theme('colors.gray.400');
-}
-
-.form-input:focus {
-  @apply outline-none ring-2;
-  border-color: theme('colors.orange.500');
-  ring-color: theme('colors.orange.500');
-}
-
-/* Стили для тёмной темы */
-.dark .form-input {
-  background-color: theme('colors.zinc.900');
-  border-color: theme('colors.zinc.700');
-  color: theme('colors.white');
-}
-
-.dark .form-input::placeholder {
-  color: theme('colors.zinc.500');
-}
-
-.dark .form-input:focus {
-  border-color: theme('colors.orange.500');
-  ring-color: theme('colors.orange.500');
-}
-
-/* Исправление для автозаполнения */
-.form-input:-webkit-autofill,
-.form-input:-webkit-autofill:hover,
-.form-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: theme('colors.gray.900');
-  -webkit-box-shadow: 0 0 0px 1000px theme('colors.white') inset;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
-.dark .form-input:-webkit-autofill,
-.dark .form-input:-webkit-autofill:hover,
-.dark .form-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: theme('colors.white');
-  -webkit-box-shadow: 0 0 0px 1000px theme('colors.zinc.900') inset;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
-/* Специфичные стили для input в форме */
-.form-input-neshkola {
-  color: #171615 !important;
-  background-color: #ffffff !important;
-  caret-color: #ff5500 !important;
-  -webkit-text-fill-color: #171615 !important;
-  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
-  box-shadow: 0 0 0 30px #ffffff inset !important;
-}
-
-.form-input-neshkola::selection {
-  color: #ffffff !important;
-  background: #ff5500 !important;
-}
-
-.form-input-neshkola:focus {
-  color: #171615 !important;
-  background-color: #ffffff !important;
-  -webkit-text-fill-color: #171615 !important;
-  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
-  box-shadow: 0 0 0 30px #ffffff inset !important;
-}
-
-.dark .form-input-neshkola {
-  color: #171615 !important;
-  background-color: #ffffff !important;
-  -webkit-text-fill-color: #171615 !important;
-  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
-  box-shadow: 0 0 0 30px #ffffff inset !important;
-}
-
-.dark .form-input-neshkola:focus {
-  color: #171615 !important;
-  background-color: #ffffff !important;
-  -webkit-text-fill-color: #171615 !important;
-  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
-  box-shadow: 0 0 0 30px #ffffff inset !important;
-}
-
-.cta-btn {
-  @apply w-full max-w-[340px] mx-auto block rounded-full h-12 px-6 text-[15px] font-bold text-center bg-orange-500 hover:bg-orange-600 text-white transition-all duration-300 whitespace-normal leading-tight shadow-md active:scale-95;
-}
-
-/* Скрытие горизонтального скроллбара для селектора городов */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-.city-selector-container {
-  min-height: 60px;
-  position: relative;
-  z-index: 20;
 }

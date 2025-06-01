@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cn } from "../utils/cn"
+import { cn } from "../../utils/cn"
 
 interface VolumeButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "outline" | "image"
@@ -19,9 +19,9 @@ export const VolumeButton = React.forwardRef<HTMLButtonElement, VolumeButtonProp
         ref={ref}
         className={cn(
           "volume-button",
-          size === "default" && "px-6 py-3 text-base",
-          size === "sm" && "px-4 py-2 text-sm",
-          size === "lg" && "px-8 py-4 text-lg",
+          size === "default" && "px-6 py-3 text-base min-h-[44px]",
+          size === "sm" && "px-4 py-2 text-sm min-h-[44px]",
+          size === "lg" && "px-8 py-4 text-lg min-h-[48px]",
           variant === "primary" &&
             "bg-orange-500 text-white hover:bg-orange-600 active:bg-orange-700 active:translate-y-[1px]",
           variant === "secondary" &&

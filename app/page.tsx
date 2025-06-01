@@ -3,11 +3,9 @@ import Header from "../components/header"
 import Hero from "../components/hero"
 import FirstLesson from "../components/first-lesson"
 import About from "../components/about"
-import CitySelector from "../components/CitySelector"
-import { getDefaultCity } from "../data/cities"
-// import { PageViewTracker } from "../components/analytics/page-view-tracker" // временно отключено
-// import { StructuredData } from "../components/seo/structured-data" // временно отключено
-// import StickyCTAButton from "../components/sticky-cta-button" // временно отключено
+import { PageViewTracker } from "../components/analytics/page-view-tracker"
+import { StructuredData } from "../components/seo/structured-data"
+import StickyCTAButton from "../components/sticky-cta-button"
 
 const Benefits = dynamic(() => import("../components/benefits"), { ssr: true })
 const Testimonials = dynamic(() => import("../components/testimonials"), { ssr: true })
@@ -29,22 +27,24 @@ export const generateMetadata = async () => {
   }
 }
 
-export default function HomePage() {
-  const defaultCity = getDefaultCity()
+export default function Home() {
   return (
     <BackgroundGradientAnimation containerClassName="min-h-screen">
+      <StructuredData />
+
       <Header />
-      <div className="mt-3">
-        <CitySelector />
-      </div>
       <main className="min-h-screen smooth-scroll-container">
-        <Hero city={defaultCity} />
+        <PageViewTracker />
+
+        <Hero />
         <FirstLesson />
         <About />
         <Benefits />
         <Testimonials />
-        <ContactCta city={defaultCity} />
+        <ContactCta />
         <Footer />
+
+        <StickyCTAButton targetId="contact" />
       </main>
     </BackgroundGradientAnimation>
   )

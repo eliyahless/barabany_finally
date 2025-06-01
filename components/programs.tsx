@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Mic, Guitar, Piano, Drum, Music } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "./ui/button"
 
 export default function Programs() {
   const [activeTab, setActiveTab] = useState("voice")
