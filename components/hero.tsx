@@ -61,14 +61,16 @@ export default function Hero() {
             </AnimateOnScroll>
 
             <AnimateOnScroll animation="fade-up" delay={400}>
-              <div className="relative w-full max-w-[340px] mx-auto block">
-                <button
-                  className="cta-btn"
+              <div className="relative inline-block w-full sm:w-auto">
+                <VolumeButton
+                  variant="primary"
+                  size="default"
+                  className="rounded-full px-4 sm:px-6 py-3 md:px-8 md:py-4 button-text text-sm md:text-base w-full sm:w-auto"
+                  withBorder={true}
                   onClick={() => scrollToIdWithOffset("contact")}
-                  type="button"
                 >
                   ЗАПИСАТЬСЯ НА БЕСПЛАТНЫЙ УРОК
-                </button>
+                </VolumeButton>
               </div>
             </AnimateOnScroll>
           </div>
