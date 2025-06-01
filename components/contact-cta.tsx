@@ -173,9 +173,10 @@ export default function ContactCta() {
 
                 <button
                   type="submit"
-                  className="cta-btn"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 md:py-4 px-6 rounded-full transition-all duration-300 flex items-center justify-center touch-callout-none"
                 >
-                  Записаться на бесплатный урок <span className="ml-2">→</span>
+                  <span>Записаться на бесплатный урок</span>
+                  <span className="ml-2">→</span>
                 </button>
 
                 <div className="flex items-center mt-4">

@@ -41,9 +41,9 @@ export default function Home() {
         <About />
         <Benefits />
         <Testimonials />
+        <ContactCta />
         <Footer />
         {/* <StickyCTAButton targetId="contact" /> */}
-        <ContactCta />
       </main>
     </BackgroundGradientAnimation>
   )

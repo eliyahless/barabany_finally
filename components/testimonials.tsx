@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import ImageWithFallback from "./ui/image-with-fallback"
 import AnimateOnScroll from "./animate-on-scroll"
+import { VolumeButton } from "./ui/volume-button"
 
 export default function Testimonials() {
   const [columns, setColumns] = useState(2)
@@ -78,13 +79,15 @@ export default function Testimonials() {
 
             {/* Кнопка CTA под изображением */}
             <div className="mt-4 px-4 pb-4">
-              <button
-                className="cta-btn"
-                type="button"
+              <VolumeButton
+                variant="primary"
+                size="lg"
+                belowImage={true}
+                className="w-full rounded-full"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
                 ЗАПИСАТЬСЯ НА БЕСПЛАТНЫЙ УРОК
-              </button>
+              </VolumeButton>
             </div>
           </div>
         </AnimateOnScroll>
